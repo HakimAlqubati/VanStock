@@ -16,4 +16,10 @@ return [
     'city' => 'مدينة',
     'districts' => 'الأحياء',
     'district' => 'حي',
+    'products' => 'المنتجات',
+    'categories_and_units' => 'الفئات والوحدات',
+    'categories' => 'الفئات',
+    'category' => 'فئة',
+    'units' => 'الوحدات',
+    'unit' => 'وحدة',
 ];

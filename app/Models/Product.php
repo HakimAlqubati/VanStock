@@ -17,6 +17,7 @@ use App\Models\ProductVariant;
 use App\Models\ProductSetAttribute;
 use App\Models\Attribute;
 use App\Models\User;
+use App\Models\ProductUnit;
 
 class Product extends Model implements HasMedia
 {
@@ -79,6 +80,11 @@ class Product extends Model implements HasMedia
     public function attributes()
     {
         return $this->hasMany(ProductSetAttribute::class);
+    }
+
+    public function productUnits()
+    {
+        return $this->hasMany(ProductUnit::class);
     }
 
     public function attributesDirect()

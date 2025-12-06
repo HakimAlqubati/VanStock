@@ -16,4 +16,10 @@ return [
     'city' => 'City',
     'districts' => 'Districts',
     'district' => 'District',
+    'products' => 'Products',
+    'categories_and_units' => 'Categories & Units',
+    'categories' => 'Categories',
+    'category' => 'Category',
+    'units' => 'Units',
+    'unit' => 'Unit',
 ];
