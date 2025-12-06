@@ -24,6 +24,26 @@ class StoreResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
+    public static function getModelLabel(): string
+    {
+        return __('lang.store');
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return __('lang.stores');
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('lang.stores');
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
     public static function form(Schema $schema): Schema
     {
         return StoreForm::configure($schema);

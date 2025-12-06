@@ -8,6 +8,7 @@ use App\Filament\Resources\Countries\CountryResource;
 use App\Filament\Resources\Districts\DistrictResource;
 use App\Filament\Resources\Products\ProductResource;
 use App\Filament\Resources\SalesRepresentatives\SalesRepresentativeResource;
+use App\Filament\Resources\Stores\StoreResource;
 use App\Filament\Resources\Units\UnitResource;
 use App\Filament\Resources\Users\UserResource;
 use App\Filament\Resources\Vehicles\VehicleResource;
@@ -72,6 +73,10 @@ class AdminPanelProvider extends PanelProvider
                             ...CountryResource::getNavigationItems(),
                             ...CityResource::getNavigationItems(),
                             ...DistrictResource::getNavigationItems(),
+                        ]),
+                    NavigationGroup::make(__('lang.stores'))
+                        ->items([
+                            ...StoreResource::getNavigationItems(), 
                         ]),
                     NavigationGroup::make(__('menu.categories_and_units'))
                         ->items([
