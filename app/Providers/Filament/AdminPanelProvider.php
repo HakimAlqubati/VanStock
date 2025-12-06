@@ -2,10 +2,13 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Resources\Categories\CategoryResource;
 use App\Filament\Resources\Cities\CityResource;
 use App\Filament\Resources\Countries\CountryResource;
 use App\Filament\Resources\Districts\DistrictResource;
+use App\Filament\Resources\Products\ProductResource;
 use App\Filament\Resources\SalesRepresentatives\SalesRepresentativeResource;
+use App\Filament\Resources\Units\UnitResource;
 use App\Filament\Resources\Users\UserResource;
 use App\Filament\Resources\Vehicles\VehicleResource;
 use Filament\Http\Middleware\Authenticate;
@@ -69,6 +72,15 @@ class AdminPanelProvider extends PanelProvider
                             ...CountryResource::getNavigationItems(),
                             ...CityResource::getNavigationItems(),
                             ...DistrictResource::getNavigationItems(),
+                        ]),
+                    NavigationGroup::make(__('menu.categories_and_units'))
+                        ->items([
+                            ...CategoryResource::getNavigationItems(),
+                            ...UnitResource::getNavigationItems(),
+                        ]),
+                    NavigationGroup::make(__('menu.products'))
+                        ->items([
+                            ...ProductResource::getNavigationItems(),
                         ]),
                 ]);
             })
