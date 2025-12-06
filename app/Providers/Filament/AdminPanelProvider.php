@@ -2,10 +2,14 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Resources\Users\UserResource;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationBuilder;
+use Filament\Navigation\NavigationGroup;
+use Filament\Navigation\NavigationItem;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -28,14 +32,31 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
-             ->brandName('Qafilah')
+            ->brandName('Qafilah')
             ->favicon(asset('/imgs/logo.png'))
             ->brandLogo(asset('/imgs/logo.png'))
             ->brandLogoHeight('3.0rem')
             ->colors([
-                'primary' => Color::Blue,
+                'primary' => '#00172cff',
             ])
-             
+            ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
+                return $builder->items([
+                    NavigationItem::make(__('lang.dashboard'))
+                        ->icon('heroicon-o-home')
+                        // ->isActiveWhen(fn(): bool => original_request()->routeIs('filament.admin.pages.dashboard'))
+                        ->url(fn(): string => Dashboard::getUrl()),
+
+                    // ...UserResource::getNavigationItems(),
+                    // ...Settings::getNavigationItems(),
+                ])->groups([
+                    
+                    NavigationGroup::make(__('lang.users_management'))
+                        ->items([
+                            ...UserResource::getNavigationItems(),
+                        ]),
+                ]);
+            })
+            ->sidebarCollapsibleOnDesktop()
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
