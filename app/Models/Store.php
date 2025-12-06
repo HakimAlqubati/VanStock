@@ -40,4 +40,9 @@ class Store extends Model implements Auditable
     {
         return $this->hasOne(Vehicle::class);
     }
+
+    public function getStorekeeperNameAttribute()
+    {
+        return $this->storekeeper?->name;
+    }
 }

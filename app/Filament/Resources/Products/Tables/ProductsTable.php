@@ -74,12 +74,12 @@ class ProductsTable
                     ->toggleable()
                     ->alignCenter(),
 
-                Tables\Columns\TextColumn::make('productUnits_count')
-                    ->counts('productUnits')
-                    ->label(__('lang.units'))
-                    ->sortable()
-                    ->toggleable()
-                    ->alignCenter(),
+                // Tables\Columns\TextColumn::make('productUnitsCount')
+                //     ->counts('productUnits')
+                //     ->label(__('lang.units'))
+                //     ->sortable()
+                //     ->toggleable()
+                //     ->alignCenter(),
 
                 Tables\Columns\TextColumn::make('creator.name')
                     ->label(__('lang.created_by'))

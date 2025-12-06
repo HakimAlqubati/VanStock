@@ -24,7 +24,7 @@ class UnitsTable
                     ->sortable(),
 
                 \Filament\Tables\Columns\TextColumn::make('description')
-                    ->label(__('lang.type'))
+                    ->label(__('lang.description'))
                     ->limit(50)
                     ->toggleable(),
 

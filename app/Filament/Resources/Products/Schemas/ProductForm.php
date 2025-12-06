@@ -9,6 +9,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\Repeater\TableColumn;
 use Filament\Schemas\Components\Fieldset;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
@@ -24,7 +25,7 @@ class ProductForm
         return $schema
             ->components([
                 Fieldset::make()->columnSpanFull()->schema([
-                    Wizard::make()->columnSpanFull()->steps([
+                    Wizard::make()->columnSpanFull()->skippable()->steps([
                         // Step 1: Basic Information
                         Step::make(__('lang.basic_info'))
                             ->icon('heroicon-o-information-circle')
@@ -102,65 +103,64 @@ class ProductForm
                                     ->addActionLabel(__('lang.add_unit'))
                                     ->collapsible()
                                     ->cloneable()
+                                    // ->columnOrder('sort_order')
+                                    // ->columns(7)
+                                    ->table([
+                                        TableColumn::make(__('lang.unit'))->width('10rem'),
+                                        TableColumn::make(__('lang.package_size')),
+                                        TableColumn::make(__('lang.cost_price')),
+                                        TableColumn::make(__('lang.selling_price')),
+                                        TableColumn::make(__('lang.stock')),
+                                        TableColumn::make(__('lang.moq')),
+                                        TableColumn::make(__('lang.is_default')),
+                                        TableColumn::make(__('lang.sort_order')),
+                                    ])
                                     ->defaultItems(1)
                                     ->columnSpanFull()
                                     ->schema([
-                                        Grid::make(4)->schema([
-                                            Select::make('unit_id')
-                                                ->label(__('lang.unit'))
-                                                ->relationship('unit', 'name')
-                                                ->searchable()
-                                                ->preload()
-                                                ->required()
-                                                ->columnSpan(1),
+                                        Select::make('unit_id')
+                                            ->label(__('lang.unit'))
+                                            ->relationship('unit', 'name')
+                                            ->searchable()
+                                            ->preload()
+                                            ->required() ,
 
-                                            TextInput::make('package_size')
-                                                ->label(__('lang.package_size'))
-                                                ->numeric()
-                                                ->default(1)
-                                                ->minValue(1)
-                                                ->required()
-                                                ->columnSpan(1),
+                                        TextInput::make('package_size')
+                                            ->label(__('lang.package_size'))
+                                            ->numeric()
+                                            ->default(1)
+                                            ->minValue(1)
+                                            ->required(),
 
-                                            TextInput::make('cost_price')
-                                                ->label(__('lang.cost_price'))
-                                                ->numeric()
-                                                ->prefix('$')
-                                                ->columnSpan(1),
+                                        TextInput::make('cost_price')
+                                            ->label(__('lang.cost_price'))
+                                            ->numeric()
+                                            ->prefix('$')
+                                            ->required(),
 
-                                            TextInput::make('selling_price')
-                                                ->label(__('lang.selling_price'))
-                                                ->numeric()
-                                                ->prefix('$')
-                                                ->columnSpan(1),
-                                        ]),
+                                        TextInput::make('selling_price')
+                                            ->label(__('lang.selling_price'))
+                                            ->numeric()
+                                            ->prefix('$'),
 
-                                        Grid::make(4)->schema([
-                                            TextInput::make('stock')
-                                                ->label(__('lang.stock'))
-                                                ->numeric()
-                                                ->default(0)
-                                                ->columnSpan(1),
+                                        TextInput::make('stock')
+                                            ->label(__('lang.stock'))
+                                            ->numeric()
+                                            ->default(0) ,
 
-                                            TextInput::make('moq')
-                                                ->label(__('lang.moq'))
-                                                ->numeric()
-                                                ->default(1)
-                                                ->minValue(1)
-                                                ->columnSpan(1),
+                                        TextInput::make('moq')
+                                            ->label(__('lang.moq'))
+                                            ->numeric()
+                                            ->default(1)
+                                            ->minValue(1) ,
 
-                                            TextInput::make('sort_order')
-                                                ->label(__('lang.sort_order'))
-                                                ->numeric()
-                                                ->default(0)
-                                                ->columnSpan(1),
 
-                                            Toggle::make('is_default')
-                                                ->label(__('lang.is_default'))
-                                                ->default(false)
-                                                ->inline(false)
-                                                ->columnSpan(1),
-                                        ]),
+
+                                        Toggle::make('is_default')
+                                            ->label(__('lang.is_default'))
+                                            ->default(false)
+                                            ->inline(false),
+
                                     ]),
                             ]),
                     ])

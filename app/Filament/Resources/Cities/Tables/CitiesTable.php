@@ -11,7 +11,7 @@ class CitiesTable
 {
     public static function configure(Table $table): Table
     {
-        return $table
+        return $table->striped()->defaultSort('id','desc')
             ->columns([
                 \Filament\Tables\Columns\TextColumn::make('name')
                     ->label(__('lang.name'))
