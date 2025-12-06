@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\Dashboard;
 use App\Filament\Resources\Categories\CategoryResource;
 use App\Filament\Resources\Cities\CityResource;
 use App\Filament\Resources\Countries\CountryResource;
@@ -19,7 +20,6 @@ use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Navigation\NavigationBuilder;
 use Filament\Navigation\NavigationGroup;
 use Filament\Navigation\NavigationItem;
-use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
@@ -68,15 +68,9 @@ class AdminPanelProvider extends PanelProvider
                             ...VehicleResource::getNavigationItems(),
                             ...SalesRepresentativeResource::getNavigationItems(),
                         ]),
-                    NavigationGroup::make(__('lang.location_management'))
-                        ->items([
-                            ...CountryResource::getNavigationItems(),
-                            ...CityResource::getNavigationItems(),
-                            ...DistrictResource::getNavigationItems(),
-                        ]),
                     NavigationGroup::make(__('lang.stores'))
                         ->items([
-                            ...StoreResource::getNavigationItems(), 
+                            ...StoreResource::getNavigationItems(),
                         ]),
                     NavigationGroup::make(__('menu.categories_and_units'))
                         ->items([
@@ -87,6 +81,13 @@ class AdminPanelProvider extends PanelProvider
                         ->items([
                             ...ProductResource::getNavigationItems(),
                         ]),
+                    NavigationGroup::make(__('lang.location_management'))
+                        ->items([
+                            ...CountryResource::getNavigationItems(),
+                            ...CityResource::getNavigationItems(),
+                            ...DistrictResource::getNavigationItems(),
+                        ]),
+
                 ]);
             })
             ->sidebarCollapsibleOnDesktop()
