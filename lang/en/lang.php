@@ -92,4 +92,8 @@ return [
     'others' => 'Others',
     'sales_per_month' => 'Sales per Month',
     'top_5_products_sales' => 'Top 5 Products Sales',
+    'good_morning'   => 'Good Morning',
+    'good_afternoon' => 'Good Afternoon',
+    'good_evening'   => 'Good Evening',
+    'welcome'        => 'Welcome',
 ];

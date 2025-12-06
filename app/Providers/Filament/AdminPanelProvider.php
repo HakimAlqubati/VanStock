@@ -23,6 +23,7 @@ use Filament\Navigation\NavigationItem;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\View\PanelsRenderHook;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -112,6 +113,17 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
+              ->renderHook(
+                PanelsRenderHook::TOPBAR_LOGO_AFTER,
+                fn(): string =>
+                view('filament.partials.current-time')->render()
+            )
+            ->renderHook(
+                PanelsRenderHook::TOPBAR_LOGO_AFTER,
+                fn(): string =>
+                view('filament.partials.welcome')->render()
+            )
+
             ->authMiddleware([
                 Authenticate::class,
             ]);

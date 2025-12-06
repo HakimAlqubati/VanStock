@@ -92,4 +92,9 @@ return [
     'others' => 'أخرى',
     'sales_per_month' => 'المبيعات الشهرية',
     'top_5_products_sales' => 'أعلى 5 منتجات مبيعاً',
+    'good_morning'   => 'صباح الخير',
+    'good_afternoon' => 'طاب يومك', // أو "نهارك سعيد"
+    'good_evening'   => 'مساء الخير',
+    'welcome'        => 'أهلاً بك',
+
 ];
