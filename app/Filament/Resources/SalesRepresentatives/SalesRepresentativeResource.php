@@ -26,6 +26,26 @@ class SalesRepresentativeResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
+    public static function getNavigationGroup(): ?string
+    {
+        return __('lang.sales_representatives');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('menu.sales_representative');
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return __('menu.sales_representatives');
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('menu.sales_representatives');
+    }
+
     public static function form(Schema $schema): Schema
     {
         return SalesRepresentativeForm::configure($schema);

@@ -2,7 +2,12 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Resources\Cities\CityResource;
+use App\Filament\Resources\Countries\CountryResource;
+use App\Filament\Resources\Districts\DistrictResource;
+use App\Filament\Resources\SalesRepresentatives\SalesRepresentativeResource;
 use App\Filament\Resources\Users\UserResource;
+use App\Filament\Resources\Vehicles\VehicleResource;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -49,10 +54,21 @@ class AdminPanelProvider extends PanelProvider
                     // ...UserResource::getNavigationItems(),
                     // ...Settings::getNavigationItems(),
                 ])->groups([
-                    
+
                     NavigationGroup::make(__('menu.users_management'))
                         ->items([
                             ...UserResource::getNavigationItems(),
+                        ]),
+                    NavigationGroup::make(__('menu.sales_and_vehicles'))
+                        ->items([
+                            ...VehicleResource::getNavigationItems(),
+                            ...SalesRepresentativeResource::getNavigationItems(),
+                        ]),
+                    NavigationGroup::make(__('lang.location_management'))
+                        ->items([
+                            ...CountryResource::getNavigationItems(),
+                            ...CityResource::getNavigationItems(),
+                            ...DistrictResource::getNavigationItems(),
                         ]),
                 ]);
             })
