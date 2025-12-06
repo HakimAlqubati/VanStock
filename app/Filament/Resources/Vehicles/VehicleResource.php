@@ -46,6 +46,11 @@ class VehicleResource extends Resource
         return __('lang.vehicles');
     }
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
     public static function form(Schema $schema): Schema
     {
         return VehicleForm::configure($schema);

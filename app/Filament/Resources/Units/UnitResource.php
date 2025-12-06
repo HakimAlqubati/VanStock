@@ -22,6 +22,26 @@ class UnitResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
+    public static function getModelLabel(): string
+    {
+        return __('lang.unit');
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return __('lang.units');
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('lang.units');
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
     public static function form(Schema $schema): Schema
     {
         return UnitForm::configure($schema);

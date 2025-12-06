@@ -46,6 +46,11 @@ class SalesRepresentativeResource extends Resource
         return __('menu.sales_representatives');
     }
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
     public static function form(Schema $schema): Schema
     {
         return SalesRepresentativeForm::configure($schema);
