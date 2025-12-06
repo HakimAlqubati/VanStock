@@ -14,6 +14,9 @@ class SalesRepresentative extends Model
 
     protected $fillable = [
         'user_id',
+        'name',
+        'email',
+        'phone',
         'current_vehicle_id',
         'rep_code',
         'cash_wallet',

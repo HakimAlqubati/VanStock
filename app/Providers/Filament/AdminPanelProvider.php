@@ -50,7 +50,7 @@ class AdminPanelProvider extends PanelProvider
                     // ...Settings::getNavigationItems(),
                 ])->groups([
                     
-                    NavigationGroup::make(__('lang.users_management'))
+                    NavigationGroup::make(__('menu.users_management'))
                         ->items([
                             ...UserResource::getNavigationItems(),
                         ]),
