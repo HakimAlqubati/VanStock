@@ -97,4 +97,25 @@ return [
     'good_evening'   => 'مساء الخير',
     'welcome'        => 'أهلاً بك',
 
+    // Customers - العملاء
+    'customers' => 'العملاء',
+    'customer' => 'عميل',
+    'customer_information' => 'معلومات العميل',
+    'contact_info' => 'معلومات التواصل',
+    'location_info' => 'معلومات الموقع',
+    'financial_info' => 'المعلومات المالية',
+    'contact_person' => 'الشخص المسؤول',
+    'address' => 'العنوان',
+    'credit_limit' => 'الحد الائتماني',
+    'balance' => 'الرصيد',
+    'customer_type' => 'نوع العميل',
+    'retail' => 'تجزئة',
+    'wholesale' => 'جملة',
+    'latitude' => 'خط العرض',
+    'longitude' => 'خط الطول',
+    'gps_coordinates' => 'إحداثيات GPS',
+    'total_orders' => 'إجمالي الطلبات',
+    'total_invoices' => 'إجمالي الفواتير',
+    'outstanding_balance' => 'الرصيد المستحق',
+
 ];

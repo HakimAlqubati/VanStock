@@ -6,6 +6,7 @@ use App\Filament\Pages\Dashboard;
 use App\Filament\Resources\Categories\CategoryResource;
 use App\Filament\Resources\Cities\CityResource;
 use App\Filament\Resources\Countries\CountryResource;
+use App\Filament\Resources\Customers\CustomerResource;
 use App\Filament\Resources\Districts\DistrictResource;
 use App\Filament\Resources\Products\ProductResource;
 use App\Filament\Resources\SalesRepresentatives\SalesRepresentativeResource;
@@ -81,6 +82,10 @@ class AdminPanelProvider extends PanelProvider
                     NavigationGroup::make(__('menu.products'))
                         ->items([
                             ...ProductResource::getNavigationItems(),
+                        ]),
+                    NavigationGroup::make(__('lang.customers'))
+                        ->items([
+                            ...CustomerResource::getNavigationItems(),
                         ]),
                     NavigationGroup::make(__('lang.location_management'))
                         ->items([
