@@ -22,9 +22,29 @@ class StockTransferResource extends Resource
 {
     protected static ?string $model = StockTransfer::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedArrowsRightLeft;
 
     protected static ?string $recordTitleAttribute = 'transfer_number';
+
+    public static function getModelLabel(): string
+    {
+        return __('lang.stock_transfer');
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return __('lang.stock_transfers');
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('lang.stock_transfers');
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
 
     public static function form(Schema $schema): Schema
     {

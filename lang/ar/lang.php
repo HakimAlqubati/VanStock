@@ -194,4 +194,21 @@ return [
     'transactionable' => 'المرجع',
     'waste_stock_percentage' => 'نسبة الهالك',
 
+    // Stock Transfers - التحويلات المخزنية
+    'stock_transfers' => 'التحويلات المخزنية',
+    'stock_transfer' => 'تحويل مخزني',
+    'transfer_number' => 'رقم التحويل',
+    'transfer_date' => 'تاريخ التحويل',
+    'from_store' => 'من مخزن',
+    'to_store' => 'إلى مخزن',
+    'transfer_info' => 'معلومات التحويل',
+    'transfer_items' => 'عناصر التحويل',
+    'approved_by' => 'تمت الموافقة بواسطة',
+    'approved_at' => 'وقت الموافقة',
+    'transfer_pending' => 'معلق',
+    'transfer_approved' => 'تمت الموافقة',
+    'transfer_in_transit' => 'قيد النقل',
+    'transfer_completed' => 'مكتمل',
+    'transfer_cancelled' => 'ملغي',
+
 ];

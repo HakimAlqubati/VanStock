@@ -193,4 +193,21 @@ return [
     'source_transaction' => 'Source Transaction',
     'transactionable' => 'Reference',
     'waste_stock_percentage' => 'Waste Stock Percentage',
+
+    // Stock Transfers
+    'stock_transfers' => 'Stock Transfers',
+    'stock_transfer' => 'Stock Transfer',
+    'transfer_number' => 'Transfer Number',
+    'transfer_date' => 'Transfer Date',
+    'from_store' => 'From Store',
+    'to_store' => 'To Store',
+    'transfer_info' => 'Transfer Information',
+    'transfer_items' => 'Transfer Items',
+    'approved_by' => 'Approved By',
+    'approved_at' => 'Approved At',
+    'transfer_pending' => 'Pending',
+    'transfer_approved' => 'Approved',
+    'transfer_in_transit' => 'In Transit',
+    'transfer_completed' => 'Completed',
+    'transfer_cancelled' => 'Cancelled',
 ];
