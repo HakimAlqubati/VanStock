@@ -42,7 +42,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
-            ->brandName('Qafilah')
+            ->brandName('VanStock')
             ->favicon(asset('/imgs/logo.png'))
             ->brandLogo(asset('/imgs/logo.png'))
             ->brandLogoHeight('3.0rem')
