@@ -1,0 +1,1771 @@
+================================================================================
+VanStock Models Documentation
+Generated: 2025-12-07
+Total Models: 35
+================================================================================
+
+================================================================================
+1. Attribute.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+class Attribute extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['name', 'type'];
+
+    public function values()
+    {
+        return $this->hasMany(AttributeValue::class);
+    }
+}
+
+================================================================================
+2. AttributeSet.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+class AttributeSet extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['name'];
+
+    public function attributes()
+    {
+        return $this->hasMany(Attribute::class);
+    }
+}
+
+================================================================================
+3. AttributeValue.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+class AttributeValue extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['attribute_id', 'value'];
+
+    public function attribute()
+    {
+        return $this->belongsTo(Attribute::class);
+    }
+}
+
+================================================================================
+4. Brand.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
+
+class Brand extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['name', 'slug', 'description', 'active'];
+
+    protected static function booted()
+    {
+        static::creating(function ($brand) {
+            if (empty($brand->slug)) {
+                $brand->slug = Str::slug($brand->name);
+            }
+        });
+    }
+}
+
+================================================================================
+5. Category.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Product;
+use Spatie\Translatable\HasTranslations;
+
+class Category extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['name', 'parent_id', 'active', 'sort_order', 'attribute_set_id'];
+
+    protected $casts = ['active' => 'bool'];
+
+    public function parent()
+    {
+        return $this->belongsTo(Category::class, 'parent_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(Category::class, 'parent_id');
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public function attributeSet()
+    {
+        return $this->belongsTo(AttributeSet::class);
+    }
+}
+
+================================================================================
+6. City.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+class City extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'country_id',
+        'name',
+        'status',
+    ];
+
+    protected $casts = [
+        'status' => 'boolean',
+    ];
+
+    public function country(): BelongsTo
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function districts(): HasMany
+    {
+        return $this->hasMany(District::class);
+    }
+}
+
+================================================================================
+7. Country.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+class Country extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'code',
+        'phone_code',
+        'status',
+    ];
+
+    protected $casts = [
+        'status' => 'boolean',
+    ];
+
+    public function cities(): HasMany
+    {
+        return $this->hasMany(City::class);
+    }
+}
+
+================================================================================
+8. Customer.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class Customer extends Model
+{
+    use SoftDeletes;
+
+    protected $fillable = [
+        'name',
+        'phone',
+        'email',
+        'district_id',
+        'address',
+        'contact_person',
+        'credit_limit',
+        'balance',
+        'customer_type',
+        'active',
+        'latitude',
+        'longitude',
+        'created_by',
+        'updated_by',
+    ];
+
+    protected $casts = [
+        'credit_limit' => 'decimal:2',
+        'balance' => 'decimal:2',
+        'latitude' => 'decimal:8',
+        'longitude' => 'decimal:8',
+        'active' => 'boolean',
+    ];
+
+    public function district(): BelongsTo
+    {
+        return $this->belongsTo(District::class);
+    }
+
+    public function createdBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function updatedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
+
+    public function salesOrders(): HasMany
+    {
+        return $this->hasMany(SalesOrder::class);
+    }
+
+    public function salesInvoices(): HasMany
+    {
+        return $this->hasMany(SalesInvoice::class);
+    }
+
+    public function payments(): HasMany
+    {
+        return $this->hasMany(Payment::class);
+    }
+
+    public function salesReturns(): HasMany
+    {
+        return $this->hasMany(SalesReturn::class);
+    }
+}
+
+================================================================================
+9. District.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class District extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'city_id',
+        'name',
+        'status',
+    ];
+
+    protected $casts = [
+        'status' => 'boolean',
+    ];
+
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(City::class);
+    }
+}
+
+================================================================================
+10. InventoryTransaction.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\Contracts\Auditable;
+
+class InventoryTransaction extends Model implements Auditable
+{
+    use SoftDeletes, \OwenIt\Auditing\Auditable;
+
+    protected $table = 'inventory_transactions';
+
+    protected $fillable = [
+        'product_id', 'movement_type', 'quantity', 'unit_id',
+        'movement_date', 'notes', 'package_size', 'store_id',
+        'price', 'transaction_date', 'purchase_invoice_id',
+        'transactionable_id', 'transactionable_type',
+        'waste_stock_percentage', 'source_transaction_id',
+        'remaining_quantity', 'base_unit_id', 'base_quantity',
+        'base_unit_package_size', 'price_per_base_unit',
+    ];
+
+    const MOVEMENT_OUT = 'out';
+    const MOVEMENT_IN = 'in';
+
+    public function transactionable(): MorphTo
+    {
+        return $this->morphTo();
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
+    }
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class, 'unit_id');
+    }
+
+    public function store()
+    {
+        return $this->belongsTo(Store::class, 'store_id');
+    }
+
+    public function sourceTransaction()
+    {
+        return $this->belongsTo(InventoryTransaction::class, 'source_transaction_id');
+    }
+
+    public function baseUnit()
+    {
+        return $this->belongsTo(Unit::class, 'base_unit_id');
+    }
+}
+
+================================================================================
+11. Payment.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class Payment extends Model
+{
+    use SoftDeletes;
+
+    protected $fillable = [
+        'payment_number',
+        'customer_id',
+        'sales_invoice_id',
+        'amount',
+        'payment_date',
+        'payment_method',
+        'sales_representative_id',
+        'notes',
+        'created_by',
+        'updated_by',
+    ];
+
+    protected $casts = [
+        'payment_date' => 'date',
+        'amount' => 'decimal:2',
+    ];
+
+    public function customer(): BelongsTo
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function salesInvoice(): BelongsTo
+    {
+        return $this->belongsTo(SalesInvoice::class);
+    }
+
+    public function salesRepresentative(): BelongsTo
+    {
+        return $this->belongsTo(SalesRepresentative::class);
+    }
+
+    public function createdBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function updatedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
+}
+
+================================================================================
+12. Product.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+
+use App\Models\Category;
+use App\Models\Brand;
+use App\Models\AttributeSet;
+use App\Models\ProductVariant;
+use App\Models\ProductSetAttribute;
+use App\Models\Attribute;
+use App\Models\User;
+use App\Models\ProductUnit;
+
+class Product extends Model implements HasMedia
+{
+    use HasFactory, SoftDeletes, InteractsWithMedia;
+
+    protected $fillable = [
+        'name',
+        'slug',
+        'category_id',
+        'brand_id',
+        'attribute_set_id',
+        'short_description',
+        'description',
+        'status',
+        'is_featured',
+        'created_by',
+        'updated_by',
+    ];
+
+    protected $casts = [
+        'is_featured' => 'boolean',
+    ];
+
+    public static array $STATUSES = [
+        'DRAFT'    => 'draft',
+        'ACTIVE'   => 'active',
+        'INACTIVE' => 'inactive',
+    ];
+
+    protected static function booted(): void
+    {
+        static::creating(function ($product) {
+            if (empty($product->slug)) {
+                $product->slug = Str::slug($product->name);
+            }
+        });
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
+    public function attributeSet()
+    {
+        return $this->belongsTo(AttributeSet::class);
+    }
+
+    public function variants()
+    {
+        return $this->hasMany(ProductVariant::class);
+    }
+
+    public function attributes()
+    {
+        return $this->hasMany(ProductSetAttribute::class);
+    }
+
+    public function productUnits()
+    {
+        return $this->hasMany(ProductUnit::class);
+    }
+
+    public function attributesDirect()
+    {
+        return $this->belongsToMany(Attribute::class, 'product_set_attributes')
+            ->withPivot(['is_variant_option', 'sort_order'])
+            ->withTimestamps();
+    }
+
+    public function seAttributes()
+    {
+        return $this->hasMany(ProductSetAttribute::class);
+    }
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function editor()
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
+
+    public function isActive(): bool
+    {
+        return $this->status === self::$STATUSES['ACTIVE'];
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', self::$STATUSES['ACTIVE']);
+    }
+
+    public function scopeFeatured($query)
+    {
+        return $query->where('is_featured', true);
+    }
+}
+
+================================================================================
+13. ProductSetAttribute.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Product;
+
+class ProductSetAttribute extends Model
+{
+    use HasFactory;
+
+    protected $table = 'product_set_attributes';
+
+    protected $fillable = ['product_id', 'attribute_id', 'is_variant_option', 'sort_order'];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+}
+
+================================================================================
+14. ProductUnit.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class ProductUnit extends Model
+{
+    use HasFactory, SoftDeletes;
+
+    protected $table = 'product_units';
+
+    protected $fillable = [
+        'product_id',
+        'unit_id',
+        'package_size',
+        'cost_price',
+        'selling_price',
+        'stock',
+        'moq',
+        'is_default',
+        'status',
+        'sort_order',
+        'created_by',
+        'updated_by',
+    ];
+
+    protected $casts = [
+        'is_default' => 'boolean',
+        'cost_price' => 'decimal:4',
+        'selling_price' => 'decimal:4',
+        'package_size' => 'integer',
+        'stock' => 'integer',
+    ];
+
+    public static array $STATUSES = [
+        'ACTIVE'   => 'active',
+        'INACTIVE' => 'inactive',
+    ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class);
+    }
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function editor()
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
+
+    public function getPricePerPiece(): float
+    {
+        if ($this->package_size <= 0) return 0;
+        return round($this->selling_price / $this->package_size, 2);
+    }
+}
+
+================================================================================
+15. ProductVariant.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+
+use App\Models\Product;
+use App\Models\AttributeValue;
+
+class ProductVariant extends Model implements HasMedia
+{
+    use HasFactory, SoftDeletes, InteractsWithMedia;
+
+    protected $fillable = [
+        'product_id',
+        'master_sku',
+        'barcode',
+        'weight',
+        'dimensions',
+        'status',
+        'is_default',
+        'created_by',
+        'updated_by',
+    ];
+
+    protected $casts = [
+        'is_default' => 'boolean',
+        'dimensions' => 'array',
+    ];
+
+    public static array $STATUSES = [
+        'DRAFT'    => 'draft',
+        'ACTIVE'   => 'active',
+        'INACTIVE' => 'inactive',
+    ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function variantValues()
+    {
+        return $this->belongsToMany(AttributeValue::class, 'product_variant_values', 'variant_id', 'attribute_value_id')
+            ->withPivot('attribute_id')
+            ->withTimestamps();
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', self::$STATUSES['ACTIVE']);
+    }
+}
+
+================================================================================
+16. ProductVariantValue.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+class ProductVariantValue extends Model
+{
+    use HasFactory;
+
+    protected $table = 'product_variant_values';
+
+    protected $fillable = ['variant_id', 'attribute_value_id', 'attribute_id'];
+
+    public function variant()
+    {
+        return $this->belongsTo(ProductVariant::class);
+    }
+
+    public function attributeValue()
+    {
+        return $this->belongsTo(AttributeValue::class);
+    }
+
+    public function attribute()
+    {
+        return $this->belongsTo(Attribute::class);
+    }
+}
+
+================================================================================
+17. SalesInvoice.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\Contracts\Auditable;
+
+class SalesInvoice extends Model implements Auditable
+{
+    use SoftDeletes, \OwenIt\Auditing\Auditable;
+
+    protected $fillable = [
+        'invoice_number',
+        'sales_order_id',
+        'customer_id',
+        'sales_representative_id',
+        'store_id',
+        'invoice_date',
+        'due_date',
+        'subtotal',
+        'discount_amount',
+        'tax_amount',
+        'total_amount',
+        'paid_amount',
+        'payment_status',
+        'notes',
+        'created_by',
+        'updated_by',
+    ];
+
+    protected $casts = [
+        'invoice_date' => 'date',
+        'due_date' => 'date',
+        'subtotal' => 'decimal:2',
+        'discount_amount' => 'decimal:2',
+        'tax_amount' => 'decimal:2',
+        'total_amount' => 'decimal:2',
+        'paid_amount' => 'decimal:2',
+    ];
+
+    public function salesOrder(): BelongsTo
+    {
+        return $this->belongsTo(SalesOrder::class);
+    }
+
+    public function customer(): BelongsTo
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function salesRepresentative(): BelongsTo
+    {
+        return $this->belongsTo(SalesRepresentative::class);
+    }
+
+    public function store(): BelongsTo
+    {
+        return $this->belongsTo(Store::class);
+    }
+
+    public function createdBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function updatedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
+
+    public function items(): HasMany
+    {
+        return $this->hasMany(SalesInvoiceItem::class);
+    }
+
+    public function payments(): HasMany
+    {
+        return $this->hasMany(Payment::class);
+    }
+}
+
+================================================================================
+18. SalesInvoiceItem.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use OwenIt\Auditing\Contracts\Auditable;
+
+class SalesInvoiceItem extends Model implements Auditable
+{
+    use \OwenIt\Auditing\Auditable;
+
+    protected $fillable = [
+        'sales_invoice_id',
+        'product_id',
+        'unit_id',
+        'quantity',
+        'unit_price',
+        'discount_amount',
+        'tax_amount',
+        'total',
+        'package_size',
+        'notes',
+    ];
+
+    protected $casts = [
+        'quantity' => 'decimal:4',
+        'unit_price' => 'decimal:4',
+        'discount_amount' => 'decimal:2',
+        'tax_amount' => 'decimal:2',
+        'total' => 'decimal:2',
+        'package_size' => 'decimal:4',
+    ];
+
+    public function salesInvoice(): BelongsTo
+    {
+        return $this->belongsTo(SalesInvoice::class);
+    }
+
+    public function product(): BelongsTo
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function unit(): BelongsTo
+    {
+        return $this->belongsTo(Unit::class);
+    }
+}
+
+================================================================================
+19. SalesOrder.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\Contracts\Auditable;
+
+class SalesOrder extends Model implements Auditable
+{
+    use SoftDeletes, \OwenIt\Auditing\Auditable;
+
+    protected $fillable = [
+        'order_number',
+        'customer_id',
+        'sales_representative_id',
+        'store_id',
+        'order_date',
+        'expected_delivery_date',
+        'status',
+        'subtotal',
+        'discount_amount',
+        'tax_amount',
+        'total_amount',
+        'notes',
+        'created_by',
+        'updated_by',
+    ];
+
+    protected $casts = [
+        'order_date' => 'date',
+        'expected_delivery_date' => 'date',
+        'subtotal' => 'decimal:2',
+        'discount_amount' => 'decimal:2',
+        'tax_amount' => 'decimal:2',
+        'total_amount' => 'decimal:2',
+    ];
+
+    // Status constants
+    const STATUS_DRAFT = 'draft';
+    const STATUS_PENDING = 'pending';
+    const STATUS_CONFIRMED = 'confirmed';
+    const STATUS_PROCESSING = 'processing';
+    const STATUS_SHIPPED = 'shipped';
+    const STATUS_DELIVERED = 'delivered';
+    const STATUS_CANCELLED = 'cancelled';
+
+    public function customer(): BelongsTo
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function salesRepresentative(): BelongsTo
+    {
+        return $this->belongsTo(SalesRepresentative::class);
+    }
+
+    public function store(): BelongsTo
+    {
+        return $this->belongsTo(Store::class);
+    }
+
+    public function createdBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function updatedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
+
+    public function items(): HasMany
+    {
+        return $this->hasMany(SalesOrderItem::class);
+    }
+
+    public function invoice(): HasOne
+    {
+        return $this->hasOne(SalesInvoice::class);
+    }
+}
+
+================================================================================
+20. SalesOrderItem.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use OwenIt\Auditing\Contracts\Auditable;
+
+class SalesOrderItem extends Model implements Auditable
+{
+    use \OwenIt\Auditing\Auditable;
+
+    protected $fillable = [
+        'sales_order_id',
+        'product_id',
+        'unit_id',
+        'quantity',
+        'unit_price',
+        'discount_amount',
+        'tax_amount',
+        'total',
+        'package_size',
+        'notes',
+    ];
+
+    protected $casts = [
+        'quantity' => 'decimal:4',
+        'unit_price' => 'decimal:4',
+        'discount_amount' => 'decimal:2',
+        'tax_amount' => 'decimal:2',
+        'total' => 'decimal:2',
+        'package_size' => 'decimal:4',
+    ];
+
+    public function salesOrder(): BelongsTo
+    {
+        return $this->belongsTo(SalesOrder::class);
+    }
+
+    public function product(): BelongsTo
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function unit(): BelongsTo
+    {
+        return $this->belongsTo(Unit::class);
+    }
+}
+
+================================================================================
+21. SalesRepresentative.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+class SalesRepresentative extends Model
+{
+    use HasFactory, SoftDeletes;
+
+    protected $fillable = [
+        'user_id',
+        'name',
+        'email',
+        'phone',
+        'current_vehicle_id',
+        'rep_code',
+        'cash_wallet',
+        'credit_limit_allowance',
+        'commission_rate',
+        'last_latitude',
+        'last_longitude',
+        'last_location_update',
+        'is_active',
+    ];
+
+    protected $casts = [
+        'cash_wallet' => 'decimal:2',
+        'credit_limit_allowance' => 'decimal:2',
+        'commission_rate' => 'decimal:2',
+        'last_latitude' => 'decimal:8',
+        'last_longitude' => 'decimal:8',
+        'last_location_update' => 'datetime',
+        'is_active' => 'boolean',
+    ];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function currentVehicle(): BelongsTo
+    {
+        return $this->belongsTo(Vehicle::class, 'current_vehicle_id');
+    }
+
+    public function assignments(): HasMany
+    {
+        return $this->hasMany(VehicleAssignment::class);
+    }
+}
+
+================================================================================
+22. SalesReturn.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\Contracts\Auditable;
+
+class SalesReturn extends Model implements Auditable
+{
+    use SoftDeletes, \OwenIt\Auditing\Auditable;
+
+    protected $fillable = [
+        'return_number',
+        'sales_invoice_id',
+        'customer_id',
+        'sales_representative_id',
+        'store_id',
+        'return_date',
+        'status',
+        'total_amount',
+        'reason',
+        'notes',
+        'created_by',
+        'updated_by',
+    ];
+
+    protected $casts = [
+        'return_date' => 'date',
+        'total_amount' => 'decimal:2',
+    ];
+
+    public function salesInvoice(): BelongsTo
+    {
+        return $this->belongsTo(SalesInvoice::class);
+    }
+
+    public function customer(): BelongsTo
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function salesRepresentative(): BelongsTo
+    {
+        return $this->belongsTo(SalesRepresentative::class);
+    }
+
+    public function store(): BelongsTo
+    {
+        return $this->belongsTo(Store::class);
+    }
+
+    public function createdBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function updatedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
+
+    public function items(): HasMany
+    {
+        return $this->hasMany(SalesReturnItem::class);
+    }
+}
+
+================================================================================
+23. SalesReturnItem.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use OwenIt\Auditing\Contracts\Auditable;
+
+class SalesReturnItem extends Model implements Auditable
+{
+    use \OwenIt\Auditing\Auditable;
+
+    protected $fillable = [
+        'sales_return_id',
+        'product_id',
+        'unit_id',
+        'quantity',
+        'unit_price',
+        'total',
+        'package_size',
+        'notes',
+    ];
+
+    protected $casts = [
+        'quantity' => 'decimal:4',
+        'unit_price' => 'decimal:4',
+        'total' => 'decimal:2',
+        'package_size' => 'decimal:4',
+    ];
+
+    public function salesReturn(): BelongsTo
+    {
+        return $this->belongsTo(SalesReturn::class);
+    }
+
+    public function product(): BelongsTo
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function unit(): BelongsTo
+    {
+        return $this->belongsTo(Unit::class);
+    }
+}
+
+================================================================================
+24. StockIssueOrder.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\Contracts\Auditable;
+
+class StockIssueOrder extends Model implements Auditable
+{
+    use SoftDeletes, \OwenIt\Auditing\Auditable;
+
+    protected $table = 'stock_issue_orders';
+
+    protected $fillable = [
+        'issue_number',
+        'store_id',
+        'issue_date',
+        'status',
+        'notes',
+        'recipient_name',
+        'recipient_department',
+        'created_by',
+        'approved_by',
+        'approved_at',
+    ];
+
+    protected $casts = [
+        'issue_date' => 'date',
+        'approved_at' => 'datetime',
+    ];
+
+    const STATUS_PENDING = 'pending';
+    const STATUS_APPROVED = 'approved';
+    const STATUS_ISSUED = 'issued';
+    const STATUS_CANCELLED = 'cancelled';
+
+    public function store(): BelongsTo
+    {
+        return $this->belongsTo(Store::class, 'store_id');
+    }
+
+    public function createdBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function approvedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'approved_by');
+    }
+
+    public function items(): HasMany
+    {
+        return $this->hasMany(StockIssueOrderItem::class, 'stock_issue_order_id');
+    }
+}
+
+================================================================================
+25. StockIssueOrderItem.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use OwenIt\Auditing\Contracts\Auditable;
+
+class StockIssueOrderItem extends Model implements Auditable
+{
+    use \OwenIt\Auditing\Auditable;
+
+    protected $table = 'stock_issue_order_items';
+
+    protected $fillable = [
+        'stock_issue_order_id',
+        'product_id',
+        'unit_id',
+        'quantity',
+        'package_size',
+        'notes',
+    ];
+
+    protected $casts = [
+        'quantity' => 'decimal:4',
+        'package_size' => 'decimal:4',
+    ];
+
+    public function stockIssueOrder(): BelongsTo
+    {
+        return $this->belongsTo(StockIssueOrder::class, 'stock_issue_order_id');
+    }
+
+    public function product(): BelongsTo
+    {
+        return $this->belongsTo(Product::class, 'product_id');
+    }
+
+    public function unit(): BelongsTo
+    {
+        return $this->belongsTo(Unit::class, 'unit_id');
+    }
+}
+
+================================================================================
+26. StockSupplyOrder.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use App\Observers\StockSupplyOrderObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\Contracts\Auditable;
+
+#[ObservedBy([StockSupplyOrderObserver::class])]
+class StockSupplyOrder extends Model implements Auditable
+{
+    use SoftDeletes, \OwenIt\Auditing\Auditable;
+
+    protected $table = 'stock_supply_orders';
+
+    protected $fillable = [
+        'supply_number',
+        'store_id',
+        'supply_date',
+        'status',
+        'notes',
+        'supplier_name',
+        'supplier_reference',
+        'created_by',
+        'approved_by',
+        'approved_at',
+    ];
+
+    protected $casts = [
+        'supply_date' => 'date',
+        'approved_at' => 'datetime',
+    ];
+
+    const STATUS_PENDING = 'pending';
+    const STATUS_APPROVED = 'approved';
+    const STATUS_RECEIVED = 'received';
+    const STATUS_CANCELLED = 'cancelled';
+
+    public function store(): BelongsTo
+    {
+        return $this->belongsTo(Store::class, 'store_id');
+    }
+
+    public function createdBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function approvedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'approved_by');
+    }
+
+    public function items(): HasMany
+    {
+        return $this->hasMany(StockSupplyOrderItem::class, 'stock_supply_order_id');
+    }
+}
+
+================================================================================
+27. StockSupplyOrderItem.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use OwenIt\Auditing\Contracts\Auditable;
+
+class StockSupplyOrderItem extends Model implements Auditable
+{
+    use \OwenIt\Auditing\Auditable;
+
+    protected $table = 'stock_supply_order_items';
+
+    protected $fillable = [
+        'stock_supply_order_id',
+        'product_id',
+        'unit_id',
+        'quantity',
+        'package_size',
+        'unit_cost',
+        'notes',
+    ];
+
+    protected $casts = [
+        'quantity' => 'decimal:4',
+        'package_size' => 'decimal:4',
+        'unit_cost' => 'decimal:4',
+    ];
+
+    public function stockSupplyOrder(): BelongsTo
+    {
+        return $this->belongsTo(StockSupplyOrder::class, 'stock_supply_order_id');
+    }
+
+    public function product(): BelongsTo
+    {
+        return $this->belongsTo(Product::class, 'product_id');
+    }
+
+    public function unit(): BelongsTo
+    {
+        return $this->belongsTo(Unit::class, 'unit_id');
+    }
+}
+
+================================================================================
+28. StockTransfer.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\Contracts\Auditable;
+
+class StockTransfer extends Model implements Auditable
+{
+    use SoftDeletes, \OwenIt\Auditing\Auditable;
+
+    protected $table = 'stock_transfers';
+
+    protected $fillable = [
+        'transfer_number',
+        'from_store_id',
+        'to_store_id',
+        'transfer_date',
+        'status',
+        'notes',
+        'created_by',
+        'approved_by',
+        'approved_at',
+    ];
+
+    protected $casts = [
+        'transfer_date' => 'date',
+        'approved_at' => 'datetime',
+    ];
+
+    const STATUS_PENDING = 'pending';
+    const STATUS_APPROVED = 'approved';
+    const STATUS_IN_TRANSIT = 'in_transit';
+    const STATUS_COMPLETED = 'completed';
+    const STATUS_CANCELLED = 'cancelled';
+
+    public function fromStore(): BelongsTo
+    {
+        return $this->belongsTo(Store::class, 'from_store_id');
+    }
+
+    public function toStore(): BelongsTo
+    {
+        return $this->belongsTo(Store::class, 'to_store_id');
+    }
+
+    public function createdBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function approvedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'approved_by');
+    }
+
+    public function items(): HasMany
+    {
+        return $this->hasMany(StockTransferItem::class, 'stock_transfer_id');
+    }
+}
+
+================================================================================
+29. StockTransferItem.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use OwenIt\Auditing\Contracts\Auditable;
+
+class StockTransferItem extends Model implements Auditable
+{
+    use \OwenIt\Auditing\Auditable;
+
+    protected $table = 'stock_transfer_items';
+
+    protected $fillable = [
+        'stock_transfer_id',
+        'product_id',
+        'unit_id',
+        'quantity',
+        'package_size',
+        'notes',
+    ];
+
+    protected $casts = [
+        'quantity' => 'decimal:4',
+        'package_size' => 'decimal:4',
+    ];
+
+    public function stockTransfer(): BelongsTo
+    {
+        return $this->belongsTo(StockTransfer::class, 'stock_transfer_id');
+    }
+
+    public function product(): BelongsTo
+    {
+        return $this->belongsTo(Product::class, 'product_id');
+    }
+
+    public function unit(): BelongsTo
+    {
+        return $this->belongsTo(Unit::class, 'unit_id');
+    }
+}
+
+================================================================================
+30. Store.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\Contracts\Auditable;
+
+class Store extends Model implements Auditable
+{
+    use HasFactory, SoftDeletes, \OwenIt\Auditing\Auditable;
+
+    protected $fillable = [
+        'name',
+        'location',
+        'active',
+        'default_store',
+        'storekeeper_id',
+    ];
+
+    protected $appends = ['storekeeper_name'];
+
+    public function scopeActive($query)
+    {
+        return $query->where('active', true);
+    }
+
+    public function scopeDefaultStore($query)
+    {
+        return $query->where('default_store', true)->active()->first();
+    }
+
+    public function storekeeper()
+    {
+        return $this->belongsTo(User::class, 'storekeeper_id');
+    }
+
+    public function vehicle(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Vehicle::class);
+    }
+
+    public function getStorekeeperNameAttribute()
+    {
+        return $this->storekeeper?->name;
+    }
+}
+
+================================================================================
+31. Unit.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+class Unit extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['name', 'description', 'active', 'sort_order'];
+
+    public function scopeActive($query)
+    {
+        return $query->where('active', true);
+    }
+}
+
+================================================================================
+32. User.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
+class User extends Authenticatable
+{
+    use HasFactory, Notifiable;
+
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
+    }
+
+    public function salesRepresentative(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(SalesRepresentative::class);
+    }
+}
+
+================================================================================
+33. Vehicle.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+class Vehicle extends Model
+{
+    use HasFactory, SoftDeletes;
+
+    protected $fillable = [
+        'store_id',
+        'plate_number',
+        'model',
+        'chassis_number',
+        'status',
+        'max_load_capacity_kg',
+        'license_expiry_date',
+        'insurance_expiry_date',
+    ];
+
+    protected $casts = [
+        'license_expiry_date' => 'date',
+        'insurance_expiry_date' => 'date',
+    ];
+
+    public function store(): BelongsTo
+    {
+        return $this->belongsTo(Store::class);
+    }
+
+    public function salesRepresentative(): HasOne
+    {
+        return $this->hasOne(SalesRepresentative::class, 'current_vehicle_id');
+    }
+
+    public function assignments(): HasMany
+    {
+        return $this->hasMany(VehicleAssignment::class);
+    }
+}
+
+================================================================================
+34. VehicleAssignment.php
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class VehicleAssignment extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'vehicle_id',
+        'sales_representative_id',
+        'assigned_at',
+        'returned_at',
+        'start_odometer',
+        'end_odometer',
+        'notes',
+    ];
+
+    protected $casts = [
+        'assigned_at' => 'datetime',
+        'returned_at' => 'datetime',
+        'start_odometer' => 'decimal:2',
+        'end_odometer' => 'decimal:2',
+    ];
+
+    public function vehicle(): BelongsTo
+    {
+        return $this->belongsTo(Vehicle::class);
+    }
+
+    public function salesRepresentative(): BelongsTo
+    {
+        return $this->belongsTo(SalesRepresentative::class);
+    }
+}
+
+================================================================================
+END OF MODELS DOCUMENTATION
+================================================================================
