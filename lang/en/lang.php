@@ -161,4 +161,17 @@ return [
     'paid_amount' => 'Paid Amount',
     'remaining_amount' => 'Remaining Amount',
     'from_order' => 'From Order',
+
+    // Sales Returns
+    'sales_returns' => 'Sales Returns',
+    'sales_return' => 'Sales Return',
+    'return_number' => 'Return Number',
+    'return_date' => 'Return Date',
+    'return_info' => 'Return Information',
+    'return_items' => 'Return Items',
+    'reason' => 'Reason',
+    'from_invoice' => 'From Invoice',
+    'return_approved' => 'Approved',
+    'return_rejected' => 'Rejected',
+    'return_pending' => 'Pending Review',
 ];

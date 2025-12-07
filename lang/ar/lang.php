@@ -162,4 +162,17 @@ return [
     'remaining_amount' => 'المبلغ المتبقي',
     'from_order' => 'من أمر البيع',
 
+    // Sales Returns - مرتجعات المبيعات
+    'sales_returns' => 'مرتجعات المبيعات',
+    'sales_return' => 'مرتجع مبيعات',
+    'return_number' => 'رقم المرتجع',
+    'return_date' => 'تاريخ الإرجاع',
+    'return_info' => 'معلومات المرتجع',
+    'return_items' => 'عناصر المرتجع',
+    'reason' => 'السبب',
+    'from_invoice' => 'من الفاتورة',
+    'return_approved' => 'تمت الموافقة',
+    'return_rejected' => 'مرفوض',
+    'return_pending' => 'قيد المراجعة',
+
 ];
