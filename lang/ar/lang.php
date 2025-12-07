@@ -175,4 +175,23 @@ return [
     'return_rejected' => 'مرفوض',
     'return_pending' => 'قيد المراجعة',
 
+    // Inventory Transactions - حركات المخزون
+    'inventory_transactions' => 'حركات المخزون',
+    'inventory_transaction' => 'حركة مخزون',
+    'movement_type' => 'نوع الحركة',
+    'movement_date' => 'تاريخ الحركة',
+    'transaction_date' => 'تاريخ المعاملة',
+    'movement_in' => 'وارد',
+    'movement_out' => 'صادر',
+    'in' => 'وارد',
+    'out' => 'صادر',
+    'transaction_info' => 'معلومات الحركة',
+    'base_unit' => 'الوحدة الأساسية',
+    'base_quantity' => 'الكمية الأساسية',
+    'remaining_quantity' => 'الكمية المتبقية',
+    'price_per_base_unit' => 'السعر لكل وحدة أساسية',
+    'source_transaction' => 'حركة المصدر',
+    'transactionable' => 'المرجع',
+    'waste_stock_percentage' => 'نسبة الهالك',
+
 ];

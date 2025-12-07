@@ -174,4 +174,23 @@ return [
     'return_approved' => 'Approved',
     'return_rejected' => 'Rejected',
     'return_pending' => 'Pending Review',
+
+    // Inventory Transactions
+    'inventory_transactions' => 'Inventory Transactions',
+    'inventory_transaction' => 'Inventory Transaction',
+    'movement_type' => 'Movement Type',
+    'movement_date' => 'Movement Date',
+    'transaction_date' => 'Transaction Date',
+    'movement_in' => 'In',
+    'movement_out' => 'Out',
+    'in' => 'In',
+    'out' => 'Out',
+    'transaction_info' => 'Transaction Information',
+    'base_unit' => 'Base Unit',
+    'base_quantity' => 'Base Quantity',
+    'remaining_quantity' => 'Remaining Quantity',
+    'price_per_base_unit' => 'Price Per Base Unit',
+    'source_transaction' => 'Source Transaction',
+    'transactionable' => 'Reference',
+    'waste_stock_percentage' => 'Waste Stock Percentage',
 ];
