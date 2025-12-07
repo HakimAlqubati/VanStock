@@ -210,4 +210,33 @@ return [
     'transfer_in_transit' => 'In Transit',
     'transfer_completed' => 'Completed',
     'transfer_cancelled' => 'Cancelled',
+
+    // Stock Issue Orders
+    'stock_issue_orders' => 'Stock Issue Orders',
+    'stock_issue_order' => 'Stock Issue Order',
+    'issue_number' => 'Issue Number',
+    'issue_date' => 'Issue Date',
+    'issue_info' => 'Issue Information',
+    'issue_items' => 'Issue Items',
+    'recipient_name' => 'Recipient Name',
+    'recipient_department' => 'Recipient Department',
+    'issue_pending' => 'Pending',
+    'issue_approved' => 'Approved',
+    'issue_issued' => 'Issued',
+    'issue_cancelled' => 'Cancelled',
+
+    // Stock Supply Orders
+    'stock_supply_orders' => 'Stock Supply Orders',
+    'stock_supply_order' => 'Stock Supply Order',
+    'supply_number' => 'Supply Number',
+    'supply_date' => 'Supply Date',
+    'supply_info' => 'Supply Information',
+    'supply_items' => 'Supply Items',
+    'supplier_name' => 'Supplier Name',
+    'supplier_reference' => 'Supplier Reference',
+    'unit_cost' => 'Unit Cost',
+    'supply_pending' => 'Pending',
+    'supply_approved' => 'Approved',
+    'supply_received' => 'Received',
+    'supply_cancelled' => 'Cancelled',
 ];

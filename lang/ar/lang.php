@@ -211,4 +211,33 @@ return [
     'transfer_completed' => 'مكتمل',
     'transfer_cancelled' => 'ملغي',
 
+    // Stock Issue Orders - أوامر الصرف المخزني
+    'stock_issue_orders' => 'أوامر الصرف',
+    'stock_issue_order' => 'أمر صرف',
+    'issue_number' => 'رقم الصرف',
+    'issue_date' => 'تاريخ الصرف',
+    'issue_info' => 'معلومات الصرف',
+    'issue_items' => 'عناصر الصرف',
+    'recipient_name' => 'اسم المستلم',
+    'recipient_department' => 'القسم المستلم',
+    'issue_pending' => 'معلق',
+    'issue_approved' => 'تمت الموافقة',
+    'issue_issued' => 'تم الصرف',
+    'issue_cancelled' => 'ملغي',
+
+    // Stock Supply Orders - أوامر التوريد المخزني
+    'stock_supply_orders' => 'أوامر التوريد',
+    'stock_supply_order' => 'أمر توريد',
+    'supply_number' => 'رقم التوريد',
+    'supply_date' => 'تاريخ التوريد',
+    'supply_info' => 'معلومات التوريد',
+    'supply_items' => 'عناصر التوريد',
+    'supplier_name' => 'اسم المورد',
+    'supplier_reference' => 'مرجع المورد',
+    'unit_cost' => 'تكلفة الوحدة',
+    'supply_pending' => 'معلق',
+    'supply_approved' => 'تمت الموافقة',
+    'supply_received' => 'تم الاستلام',
+    'supply_cancelled' => 'ملغي',
+
 ];
