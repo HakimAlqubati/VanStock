@@ -22,9 +22,29 @@ class StockSupplyOrderResource extends Resource
 {
     protected static ?string $model = StockSupplyOrder::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedArrowUpTray;
 
     protected static ?string $recordTitleAttribute = 'supply_number';
+
+    public static function getModelLabel(): string
+    {
+        return __('lang.stock_supply_order');
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return __('lang.stock_supply_orders');
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('lang.stock_supply_orders');
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
 
     public static function form(Schema $schema): Schema
     {

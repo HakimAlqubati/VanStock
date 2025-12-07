@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Filament\Resources\StockSupplyOrders\Schemas;
+namespace App\Filament\Resources\StockIssueOrders\Schemas;
 
-use App\Constants;
 use App\Models\Product;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Repeater;
@@ -14,35 +13,35 @@ use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
-class StockSupplyOrderForm
+class StockIssueOrderForm
 {
     public static function configure(Schema $schema): Schema
     {
         return $schema
             ->components([
-                Section::make(__('lang.supply_info'))
+                Section::make(__('lang.issue_info'))
                     ->schema([
                         Grid::make(3)
                             ->schema([
-                                TextInput::make('supply_number')
-                                    ->label(__('lang.supply_number'))
-                                    ->default(fn() => 'SUP-' . date('Ymd') . '-' . str_pad(random_int(1, 9999), 4, '0', STR_PAD_LEFT))
+                                TextInput::make('issue_number')
+                                    ->label(__('lang.issue_number'))
+                                    ->default(fn() => 'ISS-' . date('Ymd') . '-' . str_pad(random_int(1, 9999), 4, '0', STR_PAD_LEFT))
                                     ->required()
                                     ->unique(ignoreRecord: true)
                                     ->maxLength(50),
 
-                                DatePicker::make('supply_date')
-                                    ->label(__('lang.supply_date'))
+                                DatePicker::make('issue_date')
+                                    ->label(__('lang.issue_date'))
                                     ->default(now())
                                     ->required(),
 
                                 Select::make('status')
                                     ->label(__('lang.status'))
                                     ->options([
-                                        'pending' => __('lang.supply_pending'),
-                                        'approved' => __('lang.supply_approved'),
-                                        'received' => __('lang.supply_received'),
-                                        'cancelled' => __('lang.supply_cancelled'),
+                                        'pending' => __('lang.issue_pending'),
+                                        'approved' => __('lang.issue_approved'),
+                                        'issued' => __('lang.issue_issued'),
+                                        'cancelled' => __('lang.issue_cancelled'),
                                     ])
                                     ->default('pending')
                                     ->required(),
@@ -57,12 +56,12 @@ class StockSupplyOrderForm
                                     ->preload()
                                     ->required(),
 
-                                TextInput::make('supplier_name')
-                                    ->label(__('lang.supplier_name'))
+                                TextInput::make('recipient_name')
+                                    ->label(__('lang.recipient_name'))
                                     ->maxLength(255),
 
-                                TextInput::make('supplier_reference')
-                                    ->label(__('lang.supplier_reference'))
+                                TextInput::make('recipient_department')
+                                    ->label(__('lang.recipient_department'))
                                     ->maxLength(255),
                             ]),
 
@@ -72,12 +71,12 @@ class StockSupplyOrderForm
                             ->columnSpanFull(),
                     ]),
 
-                Section::make(__('lang.supply_items'))
+                Section::make(__('lang.issue_items'))
                     ->schema([
                         Repeater::make('items')
                             ->relationship()
                             ->schema([
-                                Grid::make(6)
+                                Grid::make(5)
                                     ->schema([
                                         Select::make('product_id')
                                             ->label(__('lang.product'))
@@ -115,11 +114,6 @@ class StockSupplyOrderForm
                                             ->label(__('lang.package_size'))
                                             ->numeric()
                                             ->default(1),
-
-                                        TextInput::make('unit_cost')
-                                            ->label(__('lang.unit_cost'))
-                                            ->numeric()
-                                            ->prefix(Constants::CURRENCY),
                                     ]),
                             ])
                             ->addActionLabel(__('lang.add_item'))

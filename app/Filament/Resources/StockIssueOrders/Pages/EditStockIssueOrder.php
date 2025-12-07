@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Filament\Resources\StockSupplyOrders\Pages;
+namespace App\Filament\Resources\StockIssueOrders\Pages;
 
-use App\Filament\Resources\StockSupplyOrders\StockSupplyOrderResource;
+use App\Filament\Resources\StockIssueOrders\StockIssueOrderResource;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\ForceDeleteAction;
 use Filament\Actions\RestoreAction;
 use Filament\Actions\ViewAction;
 use Filament\Resources\Pages\EditRecord;
 
-class EditStockSupplyOrder extends EditRecord
+class EditStockIssueOrder extends EditRecord
 {
-    protected static string $resource = StockSupplyOrderResource::class;
+    protected static string $resource = StockIssueOrderResource::class;
 
     protected function getHeaderActions(): array
     {

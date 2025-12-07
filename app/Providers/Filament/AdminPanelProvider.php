@@ -10,6 +10,8 @@ use App\Filament\Resources\Customers\CustomerResource;
 use App\Filament\Resources\Districts\DistrictResource;
 use App\Filament\Resources\InventoryTransactions\InventoryTransactionResource;
 use App\Filament\Resources\Products\ProductResource;
+use App\Filament\Resources\StockIssueOrders\StockIssueOrderResource;
+use App\Filament\Resources\StockSupplyOrders\StockSupplyOrderResource;
 use App\Filament\Resources\SalesInvoices\SalesInvoiceResource;
 use App\Filament\Resources\SalesOrders\SalesOrderResource;
 use App\Filament\Resources\SalesRepresentatives\SalesRepresentativeResource;
@@ -80,6 +82,8 @@ class AdminPanelProvider extends PanelProvider
                             ...StoreResource::getNavigationItems(),
                             ...InventoryTransactionResource::getNavigationItems(),
                             ...StockTransferResource::getNavigationItems(),
+                            ...StockIssueOrderResource::getNavigationItems(),
+                            ...StockSupplyOrderResource::getNavigationItems(),
                         ]),
                     NavigationGroup::make(__('menu.categories_and_units'))
                         ->items([

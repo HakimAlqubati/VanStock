@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\StockSupplyOrders\Tables;
+namespace App\Filament\Resources\StockIssueOrders\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -13,14 +13,14 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
-class StockSupplyOrdersTable
+class StockIssueOrdersTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('supply_number')
-                    ->label(__('lang.supply_number'))
+                TextColumn::make('issue_number')
+                    ->label(__('lang.issue_number'))
                     ->searchable()
                     ->sortable(),
 
@@ -29,8 +29,8 @@ class StockSupplyOrdersTable
                     ->searchable()
                     ->sortable(),
 
-                TextColumn::make('supply_date')
-                    ->label(__('lang.supply_date'))
+                TextColumn::make('issue_date')
+                    ->label(__('lang.issue_date'))
                     ->date()
                     ->sortable(),
 
@@ -38,27 +38,27 @@ class StockSupplyOrdersTable
                     ->label(__('lang.status'))
                     ->badge()
                     ->formatStateUsing(fn(string $state): string => match ($state) {
-                        'pending' => __('lang.supply_pending'),
-                        'approved' => __('lang.supply_approved'),
-                        'received' => __('lang.supply_received'),
-                        'cancelled' => __('lang.supply_cancelled'),
+                        'pending' => __('lang.issue_pending'),
+                        'approved' => __('lang.issue_approved'),
+                        'issued' => __('lang.issue_issued'),
+                        'cancelled' => __('lang.issue_cancelled'),
                         default => $state,
                     })
                     ->color(fn(string $state): string => match ($state) {
                         'pending' => 'warning',
                         'approved' => 'info',
-                        'received' => 'success',
+                        'issued' => 'success',
                         'cancelled' => 'danger',
                         default => 'gray',
                     }),
 
-                TextColumn::make('supplier_name')
-                    ->label(__('lang.supplier_name'))
+                TextColumn::make('recipient_name')
+                    ->label(__('lang.recipient_name'))
                     ->searchable()
                     ->toggleable(),
 
-                TextColumn::make('supplier_reference')
-                    ->label(__('lang.supplier_reference'))
+                TextColumn::make('recipient_department')
+                    ->label(__('lang.recipient_department'))
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
 
@@ -78,15 +78,15 @@ class StockSupplyOrdersTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->defaultSort('supply_date', 'desc')
+            ->defaultSort('issue_date', 'desc')
             ->filters([
                 SelectFilter::make('status')
                     ->label(__('lang.status'))
                     ->options([
-                        'pending' => __('lang.supply_pending'),
-                        'approved' => __('lang.supply_approved'),
-                        'received' => __('lang.supply_received'),
-                        'cancelled' => __('lang.supply_cancelled'),
+                        'pending' => __('lang.issue_pending'),
+                        'approved' => __('lang.issue_approved'),
+                        'issued' => __('lang.issue_issued'),
+                        'cancelled' => __('lang.issue_cancelled'),
                     ]),
 
                 SelectFilter::make('store_id')

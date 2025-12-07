@@ -8,4 +8,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateStockSupplyOrder extends CreateRecord
 {
     protected static string $resource = StockSupplyOrderResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }
