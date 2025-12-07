@@ -22,7 +22,7 @@ class SalesReturnResource extends Resource
 {
     protected static ?string $model = SalesReturn::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedArrowUturnLeft;
 
     protected static ?string $recordTitleAttribute = 'return_number';
 

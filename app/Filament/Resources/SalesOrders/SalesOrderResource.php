@@ -22,7 +22,7 @@ class SalesOrderResource extends Resource
 {
     protected static ?string $model = SalesOrder::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedShoppingCart;
 
     protected static ?string $recordTitleAttribute = 'order_number';
 
