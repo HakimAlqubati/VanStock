@@ -145,4 +145,21 @@ return [
     'add_item' => 'إضافة عنصر',
     'items_count' => 'عدد العناصر',
 
+    // Sales Invoices - فواتير المبيعات
+    'sales_invoices' => 'فواتير المبيعات',
+    'sales_invoice' => 'فاتورة مبيعات',
+    'invoice_number' => 'رقم الفاتورة',
+    'invoice_date' => 'تاريخ الفاتورة',
+    'due_date' => 'تاريخ الاستحقاق',
+    'invoice_info' => 'معلومات الفاتورة',
+    'invoice_items' => 'عناصر الفاتورة',
+    'payment_status' => 'حالة الدفع',
+    'paid' => 'مدفوع',
+    'unpaid' => 'غير مدفوع',
+    'partial' => 'مدفوع جزئياً',
+    'overdue' => 'متأخر',
+    'paid_amount' => 'المبلغ المدفوع',
+    'remaining_amount' => 'المبلغ المتبقي',
+    'from_order' => 'من أمر البيع',
+
 ];

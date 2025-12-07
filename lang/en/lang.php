@@ -144,4 +144,21 @@ return [
     'total' => 'Total',
     'add_item' => 'Add Item',
     'items_count' => 'Items Count',
+
+    // Sales Invoices
+    'sales_invoices' => 'Sales Invoices',
+    'sales_invoice' => 'Sales Invoice',
+    'invoice_number' => 'Invoice Number',
+    'invoice_date' => 'Invoice Date',
+    'due_date' => 'Due Date',
+    'invoice_info' => 'Invoice Information',
+    'invoice_items' => 'Invoice Items',
+    'payment_status' => 'Payment Status',
+    'paid' => 'Paid',
+    'unpaid' => 'Unpaid',
+    'partial' => 'Partial',
+    'overdue' => 'Overdue',
+    'paid_amount' => 'Paid Amount',
+    'remaining_amount' => 'Remaining Amount',
+    'from_order' => 'From Order',
 ];
