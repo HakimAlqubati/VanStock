@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Customers\Tables;
 
+use App\Constants;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -55,13 +56,13 @@ class CustomersTable
 
                 TextColumn::make('credit_limit')
                     ->label(__('lang.credit_limit'))
-                    ->money('YER')
+                    ->money(Constants::CURRENCY)
                     ->sortable()
                     ->toggleable(),
 
                 TextColumn::make('balance')
                     ->label(__('lang.balance'))
-                    ->money('YER')
+                    ->money(Constants::CURRENCY)
                     ->sortable()
                     ->color(fn($state) => $state > 0 ? 'danger' : 'success'),
 

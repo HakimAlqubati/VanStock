@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\SalesInvoices\Schemas;
 
+use App\Constants;
 use App\Models\Product;
 use App\Models\SalesOrder;
 use Filament\Forms\Components\DatePicker;
@@ -181,7 +182,7 @@ class SalesInvoiceForm
                                     ->label(__('lang.subtotal'))
                                     ->numeric()
                                     ->default(0)
-                                    ->prefix('YER')
+                                    ->prefix(Constants::CURRENCY)
                                     ->disabled()
                                     ->dehydrated(),
 
@@ -189,19 +190,19 @@ class SalesInvoiceForm
                                     ->label(__('lang.discount_amount'))
                                     ->numeric()
                                     ->default(0)
-                                    ->prefix('YER'),
+                                    ->prefix(Constants::CURRENCY),
 
                                 TextInput::make('tax_amount')
                                     ->label(__('lang.tax_amount'))
                                     ->numeric()
                                     ->default(0)
-                                    ->prefix('YER'),
+                                    ->prefix(Constants::CURRENCY),
 
                                 TextInput::make('total_amount')
                                     ->label(__('lang.total_amount'))
                                     ->numeric()
                                     ->default(0)
-                                    ->prefix('YER')
+                                    ->prefix(Constants::CURRENCY)
                                     ->disabled()
                                     ->dehydrated(),
                             ]),
@@ -212,12 +213,12 @@ class SalesInvoiceForm
                                     ->label(__('lang.paid_amount'))
                                     ->numeric()
                                     ->default(0)
-                                    ->prefix('YER'),
+                                    ->prefix(Constants::CURRENCY),
 
                                 TextInput::make('remaining_amount')
                                     ->label(__('lang.remaining_amount'))
                                     ->numeric()
-                                    ->prefix('YER')
+                                    ->prefix(Constants::CURRENCY)
                                     ->disabled()
                                     ->dehydrated(false)
                                     ->formatStateUsing(fn(Get $get) => floatval($get('total_amount') ?? 0) - floatval($get('paid_amount') ?? 0)),

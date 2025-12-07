@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\SalesOrders\Schemas;
 
+use App\Constants;
 use App\Models\Product;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Hidden;
@@ -158,7 +159,7 @@ class SalesOrderForm
                                     ->label(__('lang.subtotal'))
                                     ->numeric()
                                     ->default(0)
-                                    ->prefix('YER')
+                                    ->prefix(Constants::CURRENCY)
                                     ->disabled()
                                     ->dehydrated(),
 
@@ -166,19 +167,19 @@ class SalesOrderForm
                                     ->label(__('lang.discount_amount'))
                                     ->numeric()
                                     ->default(0)
-                                    ->prefix('YER'),
+                                    ->prefix(Constants::CURRENCY),
 
                                 TextInput::make('tax_amount')
                                     ->label(__('lang.tax_amount'))
                                     ->numeric()
                                     ->default(0)
-                                    ->prefix('YER'),
+                                    ->prefix(Constants::CURRENCY),
 
                                 TextInput::make('total_amount')
                                     ->label(__('lang.total_amount'))
                                     ->numeric()
                                     ->default(0)
-                                    ->prefix('YER')
+                                    ->prefix(Constants::CURRENCY)
                                     ->disabled()
                                     ->dehydrated(),
                             ]),

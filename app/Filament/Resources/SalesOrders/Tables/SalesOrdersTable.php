@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\SalesOrders\Tables;
 
+use App\Constants;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -72,7 +73,7 @@ class SalesOrdersTable
 
                 TextColumn::make('total_amount')
                     ->label(__('lang.total_amount'))
-                    ->money('YER')
+                    ->money(Constants::CURRENCY)
                     ->sortable(),
 
                 TextColumn::make('created_at')

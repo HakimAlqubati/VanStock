@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\SalesReturns\Schemas;
 
+use App\Constants;
 use App\Models\Product;
 use App\Models\SalesInvoice;
 use Filament\Forms\Components\DatePicker;
@@ -169,7 +170,7 @@ class SalesReturnForm
                             ->label(__('lang.total_amount'))
                             ->numeric()
                             ->default(0)
-                            ->prefix('YER')
+                            ->prefix(Constants::CURRENCY)
                             ->disabled()
                             ->dehydrated(),
                     ]),

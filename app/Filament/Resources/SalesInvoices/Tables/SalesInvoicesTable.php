@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\SalesInvoices\Tables;
 
+use App\Constants;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -78,19 +79,19 @@ class SalesInvoicesTable
 
                 TextColumn::make('total_amount')
                     ->label(__('lang.total_amount'))
-                    ->money('YER')
+                    ->money(Constants::CURRENCY)
                     ->sortable(),
 
                 TextColumn::make('paid_amount')
                     ->label(__('lang.paid_amount'))
-                    ->money('YER')
+                    ->money(Constants::CURRENCY)
                     ->sortable()
                     ->toggleable(),
 
                 TextColumn::make('remaining_amount')
                     ->label(__('lang.remaining_amount'))
                     ->getStateUsing(fn($record) => $record->total_amount - $record->paid_amount)
-                    ->money('YER')
+                    ->money(Constants::CURRENCY)
                     ->sortable()
                     ->toggleable(),
 

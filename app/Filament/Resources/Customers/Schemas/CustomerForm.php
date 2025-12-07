@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Customers\Schemas;
 
+use App\Constants;
 use Filament\Schemas\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -98,13 +99,13 @@ class CustomerForm
                                     ->label(__('lang.credit_limit'))
                                     ->numeric()
                                     ->default(0)
-                                    ->prefix('YER'),
+                                    ->prefix(Constants::CURRENCY),
 
                                 TextInput::make('balance')
                                     ->label(__('lang.balance'))
                                     ->numeric()
                                     ->default(0)
-                                    ->prefix('YER')
+                                    ->prefix(Constants::CURRENCY)
                                     ->disabled()
                                     ->dehydrated(false),
                             ]),
