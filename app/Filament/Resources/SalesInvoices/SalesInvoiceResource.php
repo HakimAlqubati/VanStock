@@ -26,6 +26,26 @@ class SalesInvoiceResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'invoice_number';
 
+    public static function getModelLabel(): string
+    {
+        return __('lang.sales_invoice');
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return __('lang.sales_invoices');
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('lang.sales_invoices');
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
     public static function form(Schema $schema): Schema
     {
         return SalesInvoiceForm::configure($schema);

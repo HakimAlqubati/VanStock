@@ -9,7 +9,10 @@ use App\Filament\Resources\Countries\CountryResource;
 use App\Filament\Resources\Customers\CustomerResource;
 use App\Filament\Resources\Districts\DistrictResource;
 use App\Filament\Resources\Products\ProductResource;
+use App\Filament\Resources\SalesInvoices\SalesInvoiceResource;
+use App\Filament\Resources\SalesOrders\SalesOrderResource;
 use App\Filament\Resources\SalesRepresentatives\SalesRepresentativeResource;
+use App\Filament\Resources\SalesReturns\SalesReturnResource;
 use App\Filament\Resources\Stores\StoreResource;
 use App\Filament\Resources\Units\UnitResource;
 use App\Filament\Resources\Users\UserResource;
@@ -87,6 +90,12 @@ class AdminPanelProvider extends PanelProvider
                         ->items([
                             ...CustomerResource::getNavigationItems(),
                         ]),
+                    NavigationGroup::make(__('lang.sales'))
+                        ->items([
+                            ...SalesOrderResource::getNavigationItems(),
+                            ...SalesInvoiceResource::getNavigationItems(),
+                            ...SalesReturnResource::getNavigationItems(),
+                        ]),
                     NavigationGroup::make(__('lang.location_management'))
                         ->items([
                             ...CountryResource::getNavigationItems(),
@@ -118,7 +127,7 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
-              ->renderHook(
+            ->renderHook(
                 PanelsRenderHook::TOPBAR_LOGO_AFTER,
                 fn(): string =>
                 view('filament.partials.current-time')->render()
