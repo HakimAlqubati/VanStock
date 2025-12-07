@@ -8,6 +8,7 @@ use App\Filament\Resources\Cities\CityResource;
 use App\Filament\Resources\Countries\CountryResource;
 use App\Filament\Resources\Customers\CustomerResource;
 use App\Filament\Resources\Districts\DistrictResource;
+use App\Filament\Resources\InventoryTransactions\InventoryTransactionResource;
 use App\Filament\Resources\Products\ProductResource;
 use App\Filament\Resources\SalesInvoices\SalesInvoiceResource;
 use App\Filament\Resources\SalesOrders\SalesOrderResource;
@@ -76,6 +77,7 @@ class AdminPanelProvider extends PanelProvider
                     NavigationGroup::make(__('lang.stores'))
                         ->items([
                             ...StoreResource::getNavigationItems(),
+                            ...InventoryTransactionResource::getNavigationItems(),
                         ]),
                     NavigationGroup::make(__('menu.categories_and_units'))
                         ->items([
