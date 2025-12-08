@@ -81,9 +81,18 @@ class AdminPanelProvider extends PanelProvider
                         ->items([
                             ...StoreResource::getNavigationItems(),
                             ...InventoryTransactionResource::getNavigationItems(),
-                            ...StockTransferResource::getNavigationItems(),
-                            ...StockIssueOrderResource::getNavigationItems(),
+                        ]),
+                    NavigationGroup::make(__('lang.stock_supply_orders'))
+                        ->items([
                             ...StockSupplyOrderResource::getNavigationItems(),
+                        ]),
+                    NavigationGroup::make(__('lang.stock_issue_orders'))
+                        ->items([
+                            ...StockIssueOrderResource::getNavigationItems(),
+                        ]),
+                    NavigationGroup::make(__('lang.stock_transfers'))
+                        ->items([
+                            ...StockTransferResource::getNavigationItems(),
                         ]),
                     NavigationGroup::make(__('menu.categories_and_units'))
                         ->items([
