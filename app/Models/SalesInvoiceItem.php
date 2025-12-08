@@ -26,6 +26,35 @@ class SalesInvoiceItem extends Model
         'total' => 'decimal:2',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        // When a SalesInvoiceItem is created, deduct from inventory
+        static::created(function (SalesInvoiceItem $item) {
+            $invoice = $item->salesInvoice;
+
+            if (!$invoice) {
+                return;
+            }
+
+            InventoryTransaction::create([
+                'product_id' => $item->product_id,
+                'movement_type' => InventoryTransaction::MOVEMENT_OUT,
+                'quantity' => $item->quantity,
+                'unit_id' => $item->unit_id,
+                'package_size' => $item->package_size ?? 1,
+                'store_id' => $invoice->store_id,
+                'movement_date' => $invoice->invoice_date,
+                'transaction_date' => now(),
+                'transactionable_id' => $invoice->id,
+                'transactionable_type' => SalesInvoice::class,
+                'price' => $item->unit_price,
+                'notes' => __('lang.sales_invoice') . ': ' . $invoice->invoice_number,
+            ]);
+        });
+    }
+
     public function salesInvoice(): BelongsTo
     {
         return $this->belongsTo(SalesInvoice::class);
