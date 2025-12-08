@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Observers\StockTransferObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Contracts\Auditable;
 
+#[ObservedBy([StockTransferObserver::class])]
 class StockTransfer extends Model implements Auditable
 {
     use SoftDeletes, \OwenIt\Auditing\Auditable;
