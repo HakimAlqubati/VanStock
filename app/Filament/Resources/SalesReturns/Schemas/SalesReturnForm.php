@@ -215,6 +215,7 @@ class SalesReturnForm
                                 ->dehydrated(),
                         ]),
                 ])
+                    ->skippable()
                     ->columnSpanFull(),
             ]);
     }

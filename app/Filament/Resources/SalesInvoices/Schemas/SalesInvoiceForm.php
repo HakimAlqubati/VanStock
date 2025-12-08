@@ -270,6 +270,7 @@ class SalesInvoiceForm
                                 ->columnSpanFull(),
                         ]),
                 ])
+                    ->skippable()
                     ->columnSpanFull(),
             ]);
     }
