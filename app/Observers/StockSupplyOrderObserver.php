@@ -4,18 +4,18 @@ namespace App\Observers;
 
 use App\Models\InventoryTransaction;
 use App\Models\StockSupplyOrder;
+use Illuminate\Support\Facades\Log;
 
 class StockSupplyOrderObserver
 {
     /**
      * Handle the StockSupplyOrder "created" event.
+     * Note: Items are saved AFTER the order in Filament, so we can't process here.
      */
     public function created(StockSupplyOrder $stockSupplyOrder): void
     {
-        // If created with approved or received status, create inventory transactions
-        if (in_array($stockSupplyOrder->status, [StockSupplyOrder::STATUS_APPROVED, StockSupplyOrder::STATUS_RECEIVED])) {
-            $this->createInventoryTransactions($stockSupplyOrder);
-        }
+        // Items are not yet saved at this point when using Filament Repeater
+        // We will handle this in the Filament CreateRecord page instead
     }
 
     /**
@@ -33,7 +33,14 @@ class StockSupplyOrderObserver
                 in_array($newStatus, [StockSupplyOrder::STATUS_APPROVED, StockSupplyOrder::STATUS_RECEIVED])
                 && !in_array($oldStatus, [StockSupplyOrder::STATUS_APPROVED, StockSupplyOrder::STATUS_RECEIVED])
             ) {
-                $this->createInventoryTransactions($stockSupplyOrder);
+                // Check if transactions already exist for this order
+                $existingTransactions = InventoryTransaction::where('transactionable_type', StockSupplyOrder::class)
+                    ->where('transactionable_id', $stockSupplyOrder->id)
+                    ->exists();
+
+                if (!$existingTransactions) {
+                    $this->createInventoryTransactions($stockSupplyOrder);
+                }
             }
         }
     }
@@ -41,10 +48,15 @@ class StockSupplyOrderObserver
     /**
      * Create inventory transactions for all items in the supply order.
      */
-    protected function createInventoryTransactions(StockSupplyOrder $stockSupplyOrder): void
+    public function createInventoryTransactions(StockSupplyOrder $stockSupplyOrder): void
     {
-        // Load items if not loaded
-        $stockSupplyOrder->loadMissing('items');
+        // Reload items fresh from database
+        $stockSupplyOrder->load('items');
+
+        if ($stockSupplyOrder->items->isEmpty()) {
+            Log::warning("StockSupplyOrder #{$stockSupplyOrder->id} has no items to create transactions for.");
+            return;
+        }
 
         foreach ($stockSupplyOrder->items as $item) {
             InventoryTransaction::create([
@@ -63,5 +75,7 @@ class StockSupplyOrderObserver
                 'remaining_quantity' => $item->quantity,
             ]);
         }
+
+        Log::info("Created inventory transactions for StockSupplyOrder #{$stockSupplyOrder->id}");
     }
 }
