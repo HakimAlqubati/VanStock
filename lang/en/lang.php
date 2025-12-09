@@ -311,4 +311,8 @@ return [
     'attention_required' => 'Attention Required!',
     'out_of_stock_warning' => 'There are :count products out of stock that need replenishment',
 
+    // Table
+    'no_data' => 'No data available',
+    'try_different_filters' => 'Try changing filters to get results',
+
 ];

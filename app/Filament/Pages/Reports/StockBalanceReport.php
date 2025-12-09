@@ -7,6 +7,7 @@ use App\Services\Inventory\InventoryReportService;
 use App\Models\Product;
 use App\Models\Store;
 use App\Models\Category;
+use BackedEnum;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Pages\Page;
@@ -18,16 +19,17 @@ use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Collection;
+use UnitEnum;
 
 class StockBalanceReport extends Page implements HasTable
 {
     use InteractsWithTable;
 
-    protected static ?string $navigationIcon = 'heroicon-o-chart-bar';
+    protected static string | BackedEnum | null $navigationIcon = null;
 
-    protected static string $view = 'filament.pages.reports.stock-balance-report';
+    protected   string $view = 'filament.pages.reports.stock-balance-report';
 
-    protected static ?string $navigationGroup = 'التقارير';
+    protected static string | UnitEnum | null $navigationGroup = null;
 
     protected static ?int $navigationSort = 1;
 
@@ -96,7 +98,7 @@ class StockBalanceReport extends Page implements HasTable
     public function table(Table $table): Table
     {
         return $table
-            ->query(fn() => $this->getReportQuery())
+            ->records(fn() => $this->getReportQuery())
             ->columns([
                 TextColumn::make('productName')
                     ->label(__('lang.product'))
@@ -156,11 +158,10 @@ class StockBalanceReport extends Page implements HasTable
         $service = app(InventoryReportService::class);
         $filterDTO = InventoryFilterDTO::fromArray($this->filters['filters'] ?? []);
         $report = $service->getStockBalance($filterDTO);
-
-        return collect($report->items->map(fn($item) => (object) $item->toArray()));
+        return $report->items->map(fn($item) => $item->toArray())->toArray();
     }
 
-    protected function getReportData(): Collection
+    public function getReportData(): Collection
     {
         $service = app(InventoryReportService::class);
         $filterDTO = InventoryFilterDTO::fromArray($this->filters['filters'] ?? []);

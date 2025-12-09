@@ -311,4 +311,8 @@ return [
     'attention_required' => 'يحتاج انتباه!',
     'out_of_stock_warning' => 'يوجد :count منتج نفذ من المخزون ويحتاج إعادة توريد',
 
+    // Table
+    'no_data' => 'لا توجد بيانات',
+    'try_different_filters' => 'جرب تغيير الفلاتر للحصول على نتائج',
+
 ];

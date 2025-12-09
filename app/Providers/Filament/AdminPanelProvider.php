@@ -21,6 +21,12 @@ use App\Filament\Resources\Stores\StoreResource;
 use App\Filament\Resources\Units\UnitResource;
 use App\Filament\Resources\Users\UserResource;
 use App\Filament\Resources\Vehicles\VehicleResource;
+use App\Filament\Pages\Reports\StockBalanceReport;
+use App\Filament\Pages\Reports\StockByProductReport;
+use App\Filament\Pages\Reports\StockByStoreReport;
+use App\Filament\Pages\Reports\StockByCategoryReport;
+use App\Filament\Pages\Reports\TransactionHistoryReport;
+use App\Filament\Pages\Reports\LowStockReport;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -118,6 +124,15 @@ class AdminPanelProvider extends PanelProvider
                             ...CountryResource::getNavigationItems(),
                             ...CityResource::getNavigationItems(),
                             ...DistrictResource::getNavigationItems(),
+                        ]),
+                    NavigationGroup::make(__('lang.inventory_reports'))
+                        ->items([
+                            ...StockBalanceReport::getNavigationItems(),
+                            ...StockByProductReport::getNavigationItems(),
+                            ...StockByStoreReport::getNavigationItems(),
+                            ...StockByCategoryReport::getNavigationItems(),
+                            ...TransactionHistoryReport::getNavigationItems(),
+                            ...LowStockReport::getNavigationItems(),
                         ]),
 
                 ]);

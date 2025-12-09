@@ -6,6 +6,7 @@ use App\DTOs\Inventory\InventoryFilterDTO;
 use App\Services\Inventory\InventoryReportService;
 use App\Models\Store;
 use App\Models\Category;
+use BackedEnum;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -17,16 +18,17 @@ use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Illuminate\Contracts\Support\Htmlable;
+use UnitEnum;
 
 class LowStockReport extends Page implements HasTable
 {
     use InteractsWithTable;
 
-    protected static ?string $navigationIcon = 'heroicon-o-exclamation-triangle';
+    protected static string | BackedEnum | null $navigationIcon = null;
 
-    protected static string $view = 'filament.pages.reports.low-stock-report';
+    protected string $view = 'filament.pages.reports.low-stock-report';
 
-    protected static ?string $navigationGroup = 'التقارير';
+    protected static string | UnitEnum | null $navigationGroup = null;
 
     protected static ?int $navigationSort = 6;
 
@@ -97,7 +99,7 @@ class LowStockReport extends Page implements HasTable
     public function table(Table $table): Table
     {
         return $table
-            ->query(fn() => $this->getReportQuery())
+            ->records(fn() => $this->getReportQuery())
             ->columns([
                 TextColumn::make('productName')
                     ->label(__('lang.product'))
@@ -159,7 +161,7 @@ class LowStockReport extends Page implements HasTable
         $threshold = (int) ($this->filters['threshold'] ?? $this->threshold);
         $report = $service->getLowStockItems($threshold, $filterDTO);
 
-        return collect($report->items->map(fn($item) => (object) $item->toArray()));
+        return $report->items->map(fn($item) => $item->toArray())->toArray();
     }
 
     public function getReportSummary(): array

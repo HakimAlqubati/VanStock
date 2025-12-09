@@ -7,6 +7,7 @@ use App\Services\Inventory\InventoryReportService;
 use App\Models\Product;
 use App\Models\Store;
 use App\Models\Category;
+use BackedEnum;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Pages\Page;
@@ -17,16 +18,17 @@ use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Illuminate\Contracts\Support\Htmlable;
+use UnitEnum;
 
 class TransactionHistoryReport extends Page implements HasTable
 {
     use InteractsWithTable;
 
-    protected static ?string $navigationIcon = 'heroicon-o-clock';
+    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-clock';
 
-    protected static string $view = 'filament.pages.reports.transaction-history-report';
+    protected   string $view = 'filament.pages.reports.transaction-history-report';
 
-    protected static ?string $navigationGroup = 'التقارير';
+    protected static string | UnitEnum | null $navigationGroup = 'التقارير';
 
     protected static ?int $navigationSort = 5;
 
@@ -103,7 +105,7 @@ class TransactionHistoryReport extends Page implements HasTable
     public function table(Table $table): Table
     {
         return $table
-            ->query(fn() => $this->getReportQuery())
+            ->records(fn() => $this->getReportQuery())
             ->columns([
                 TextColumn::make('productName')
                     ->label(__('lang.product'))
@@ -156,7 +158,7 @@ class TransactionHistoryReport extends Page implements HasTable
         $filterDTO = InventoryFilterDTO::fromArray($this->filters['filters'] ?? []);
         $report = $service->getTransactionHistory($filterDTO);
 
-        return collect($report->items->map(fn($item) => (object) $item->toArray()));
+        return $report->items->map(fn($item) => $item->toArray())->toArray();
     }
 
     public function getReportSummary(): array

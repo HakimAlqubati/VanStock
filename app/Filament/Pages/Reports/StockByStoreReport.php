@@ -5,6 +5,7 @@ namespace App\Filament\Pages\Reports;
 use App\DTOs\Inventory\InventoryFilterDTO;
 use App\Services\Inventory\InventoryReportService;
 use App\Models\Store;
+use BackedEnum;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Pages\Page;
@@ -15,16 +16,17 @@ use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Illuminate\Contracts\Support\Htmlable;
+use UnitEnum;
 
 class StockByStoreReport extends Page implements HasTable
 {
     use InteractsWithTable;
 
-    protected static ?string $navigationIcon = 'heroicon-o-building-storefront';
+    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-building-storefront';
 
-    protected static string $view = 'filament.pages.reports.stock-by-store-report';
+    protected   string $view = 'filament.pages.reports.stock-by-store-report';
 
-    protected static ?string $navigationGroup = 'التقارير';
+    protected static string | UnitEnum | null $navigationGroup = 'التقارير';
 
     protected static ?int $navigationSort = 3;
 
@@ -79,7 +81,7 @@ class StockByStoreReport extends Page implements HasTable
     public function table(Table $table): Table
     {
         return $table
-            ->query(fn() => $this->getReportQuery())
+            ->records(fn() => $this->getReportQuery())
             ->columns([
                 TextColumn::make('storeName')
                     ->label(__('lang.store'))
@@ -126,7 +128,7 @@ class StockByStoreReport extends Page implements HasTable
         $filterDTO = InventoryFilterDTO::fromArray($this->filters['filters'] ?? []);
         $report = $service->getStockByStore($filterDTO);
 
-        return collect($report->items->map(fn($item) => (object) $item->toArray()));
+        return $report->items->map(fn($item) => $item->toArray())->toArray();
     }
 
     public function getReportSummary(): array
