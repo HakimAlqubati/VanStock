@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Payment extends Model
@@ -13,11 +14,13 @@ class Payment extends Model
     protected $fillable = [
         'payment_number',
         'customer_id',
-        'sales_invoice_id',
+        'payable_type',
+        'payable_id',
+        'payer_type',
+        'payer_id',
         'amount',
         'payment_date',
         'payment_method',
-        'sales_representative_id',
         'notes',
         'created_by',
         'updated_by',
@@ -33,14 +36,22 @@ class Payment extends Model
         return $this->belongsTo(Customer::class);
     }
 
-    public function salesInvoice(): BelongsTo
+    /**
+     * Get the payable model (SalesInvoice, SalesOrder, etc.)
+     * الحصول على السند المرتبط (فاتورة مبيعات، أمر بيع، إلخ)
+     */
+    public function payable(): MorphTo
     {
-        return $this->belongsTo(SalesInvoice::class);
+        return $this->morphTo();
     }
 
-    public function salesRepresentative(): BelongsTo
+    /**
+     * Get the payer model (SalesRepresentative, User, etc.)
+     * الحصول على الدافع (مندوب مبيعات، مستخدم، إلخ)
+     */
+    public function payer(): MorphTo
     {
-        return $this->belongsTo(SalesRepresentative::class);
+        return $this->morphTo();
     }
 
     public function createdBy(): BelongsTo

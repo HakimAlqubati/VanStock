@@ -75,9 +75,9 @@ class SalesInvoice extends Model
         return $this->hasMany(SalesInvoiceItem::class);
     }
 
-    public function payments(): HasMany
+    public function payments(): \Illuminate\Database\Eloquent\Relations\MorphMany
     {
-        return $this->hasMany(Payment::class);
+        return $this->morphMany(Payment::class, 'payable');
     }
 
     public function salesReturns(): HasMany
