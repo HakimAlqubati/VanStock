@@ -6,6 +6,7 @@ use App\Filament\Resources\SalesRepresentatives\Pages\CreateSalesRepresentative;
 use App\Filament\Resources\SalesRepresentatives\Pages\EditSalesRepresentative;
 use App\Filament\Resources\SalesRepresentatives\Pages\ListSalesRepresentatives;
 use App\Filament\Resources\SalesRepresentatives\Pages\ViewSalesRepresentative;
+use App\Filament\Resources\SalesRepresentatives\RelationManagers\AssignmentsRelationManager;
 use App\Filament\Resources\SalesRepresentatives\Schemas\SalesRepresentativeForm;
 use App\Filament\Resources\SalesRepresentatives\Schemas\SalesRepresentativeInfolist;
 use App\Filament\Resources\SalesRepresentatives\Tables\SalesRepresentativesTable;
@@ -69,7 +70,7 @@ class SalesRepresentativeResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            AssignmentsRelationManager::class,
         ];
     }
 

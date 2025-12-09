@@ -315,4 +315,13 @@ return [
     'no_data' => 'لا توجد بيانات',
     'try_different_filters' => 'جرب تغيير الفلاتر للحصول على نتائج',
 
+    // Sales Representatives
+    'vehicle_assignments_count' => 'مرات استلام الشاحنة',
+    'vehicle_assignments' => 'سجل استلام الشاحنات',
+    'assigned_at' => 'تاريخ الاستلام',
+    'returned_at' => 'تاريخ الإرجاع',
+    'start_odometer' => 'عداد البداية',
+    'end_odometer' => 'عداد النهاية',
+    'not_returned_yet' => 'لم يتم الإرجاع بعد',
+
 ];

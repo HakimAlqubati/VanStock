@@ -63,6 +63,15 @@ class SalesRepresentativesTable
                     ->sortable()
                     ->toggleable(),
 
+                Tables\Columns\TextColumn::make('assignments_count')
+                    ->label(__('lang.vehicle_assignments_count'))
+                    ->counts('assignments')
+                    ->sortable()
+                    ->toggleable()
+                    ->alignCenter()
+                    ->badge()
+                    ->color('info'),
+
                 Tables\Columns\TextColumn::make('cash_wallet')
                     ->label(__('lang.cash_wallet'))
                     ->money()

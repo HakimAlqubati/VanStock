@@ -315,4 +315,13 @@ return [
     'no_data' => 'No data available',
     'try_different_filters' => 'Try changing filters to get results',
 
+    // Sales Representatives
+    'vehicle_assignments_count' => 'Vehicle Assignments Count',
+    'vehicle_assignments' => 'Vehicle Assignments History',
+    'assigned_at' => 'Assigned At',
+    'returned_at' => 'Returned At',
+    'start_odometer' => 'Start Odometer',
+    'end_odometer' => 'End Odometer',
+    'not_returned_yet' => 'Not returned yet',
+
 ];
