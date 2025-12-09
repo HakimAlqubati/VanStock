@@ -1767,5 +1767,243 @@ class VehicleAssignment extends Model
 }
 
 ================================================================================
+36. CustomerBranch.php (NEW)
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class CustomerBranch extends Model
+{
+    use SoftDeletes;
+
+    protected $fillable = [
+        'customer_id',
+        'name',
+        'phone',
+        'email',
+        'district_id',
+        'address',
+        'contact_person',
+        'latitude',
+        'longitude',
+        'is_main',
+        'active',
+    ];
+
+    protected $casts = [
+        'latitude' => 'decimal:8',
+        'longitude' => 'decimal:8',
+        'is_main' => 'boolean',
+        'active' => 'boolean',
+    ];
+
+    public function customer(): BelongsTo
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function district(): BelongsTo
+    {
+        return $this->belongsTo(District::class);
+    }
+}
+
+================================================================================
+37. CustomerContactInfo.php (NEW)
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class CustomerContactInfo extends Model
+{
+    protected $table = 'customer_contact_info';
+
+    protected $fillable = [
+        'customer_id',
+        'contact_type',
+        'contact_value',
+        'label',
+        'is_primary',
+        'notes',
+    ];
+
+    protected $casts = [
+        'is_primary' => 'boolean',
+    ];
+
+    public function customer(): BelongsTo
+    {
+        return $this->belongsTo(Customer::class);
+    }
+}
+
+================================================================================
+UPDATED: 8. Customer.php (with branches & contactInfo relations)
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class Customer extends Model
+{
+    use SoftDeletes;
+
+    protected $fillable = [
+        'name',
+        'phone',
+        'email',
+        'district_id',
+        'address',
+        'contact_person',
+        'credit_limit',
+        'balance',
+        'customer_type',
+        'active',
+        'latitude',
+        'longitude',
+        'created_by',
+        'updated_by',
+    ];
+
+    protected $casts = [
+        'credit_limit' => 'decimal:2',
+        'balance' => 'decimal:2',
+        'latitude' => 'decimal:8',
+        'longitude' => 'decimal:8',
+        'active' => 'boolean',
+    ];
+
+    public function district(): BelongsTo
+    {
+        return $this->belongsTo(District::class);
+    }
+
+    public function createdBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function updatedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
+
+    public function salesOrders(): HasMany
+    {
+        return $this->hasMany(SalesOrder::class);
+    }
+
+    public function salesInvoices(): HasMany
+    {
+        return $this->hasMany(SalesInvoice::class);
+    }
+
+    public function payments(): HasMany
+    {
+        return $this->hasMany(Payment::class);
+    }
+
+    public function salesReturns(): HasMany
+    {
+        return $this->hasMany(SalesReturn::class);
+    }
+
+    public function branches(): HasMany
+    {
+        return $this->hasMany(CustomerBranch::class);
+    }
+
+    public function contactInfo(): HasMany
+    {
+        return $this->hasMany(CustomerContactInfo::class);
+    }
+}
+
+================================================================================
+UPDATED: 11. Payment.php (with morph relations)
+================================================================================
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class Payment extends Model
+{
+    use SoftDeletes;
+
+    protected $fillable = [
+        'payment_number',
+        'customer_id',
+        'payable_type',
+        'payable_id',
+        'payer_type',
+        'payer_id',
+        'amount',
+        'payment_date',
+        'payment_method',
+        'notes',
+        'created_by',
+        'updated_by',
+    ];
+
+    protected $casts = [
+        'payment_date' => 'date',
+        'amount' => 'decimal:2',
+    ];
+
+    public function customer(): BelongsTo
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    /**
+     * Get the payable model (SalesInvoice, SalesOrder, etc.)
+     * الحصول على السند المرتبط (فاتورة مبيعات، أمر بيع، إلخ)
+     */
+    public function payable(): MorphTo
+    {
+        return $this->morphTo();
+    }
+
+    /**
+     * Get the payer model (SalesRepresentative, User, etc.)
+     * الحصول على الدافع (مندوب مبيعات، مستخدم، إلخ)
+     */
+    public function payer(): MorphTo
+    {
+        return $this->morphTo();
+    }
+
+    public function createdBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function updatedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
+}
+ # Total: 37 Models
+
+================================================================================
 END OF MODELS DOCUMENTATION
 ================================================================================
