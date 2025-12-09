@@ -239,4 +239,30 @@ return [
     'supply_approved' => 'Approved',
     'supply_received' => 'Received',
     'supply_cancelled' => 'Cancelled',
+
+    // Customer Branches
+    'customer_branches' => 'Customer Branches',
+    'customer_branch' => 'Branch',
+    'branch_name' => 'Branch Name',
+    'is_main_branch' => 'Main Branch',
+    'add_branch' => 'Add Branch',
+    'branches_info' => 'Branches Information',
+
+    // Customer Contact Info
+    'customer_contacts' => 'Contact Information',
+    'contact_type' => 'Contact Type',
+    'contact_value' => 'Value',
+    'contact_label' => 'Label',
+    'is_primary' => 'Primary',
+    'add_contact' => 'Add Contact',
+    'contact_phone' => 'Phone',
+    'contact_mobile' => 'Mobile',
+    'contact_email' => 'Email',
+    'contact_whatsapp' => 'WhatsApp',
+    'contact_fax' => 'Fax',
+    'contact_website' => 'Website',
+    'work' => 'Work',
+    'personal' => 'Personal',
+    'sales_dept' => 'Sales Dept',
+    'accounting_dept' => 'Accounting Dept',
 ];

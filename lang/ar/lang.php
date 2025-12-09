@@ -240,4 +240,30 @@ return [
     'supply_received' => 'تم الاستلام',
     'supply_cancelled' => 'ملغي',
 
+    // Customer Branches - فروع العملاء
+    'customer_branches' => 'فروع العميل',
+    'customer_branch' => 'فرع',
+    'branch_name' => 'اسم الفرع',
+    'is_main_branch' => 'الفرع الرئيسي',
+    'add_branch' => 'إضافة فرع',
+    'branches_info' => 'معلومات الفروع',
+
+    // Customer Contact Info - معلومات التواصل
+    'customer_contacts' => 'معلومات التواصل',
+    'contact_type' => 'نوع التواصل',
+    'contact_value' => 'القيمة',
+    'contact_label' => 'التسمية',
+    'is_primary' => 'الأساسي',
+    'add_contact' => 'إضافة وسيلة تواصل',
+    'contact_phone' => 'هاتف',
+    'contact_mobile' => 'جوال',
+    'contact_email' => 'بريد إلكتروني',
+    'contact_whatsapp' => 'واتساب',
+    'contact_fax' => 'فاكس',
+    'contact_website' => 'موقع إلكتروني',
+    'work' => 'عمل',
+    'personal' => 'شخصي',
+    'sales_dept' => 'قسم المبيعات',
+    'accounting_dept' => 'قسم المحاسبة',
+
 ];
