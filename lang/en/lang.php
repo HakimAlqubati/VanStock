@@ -265,4 +265,50 @@ return [
     'personal' => 'Personal',
     'sales_dept' => 'Sales Dept',
     'accounting_dept' => 'Accounting Dept',
+
+    // Inventory Reports
+    'inventory_reports' => 'Inventory Reports',
+    'stock_balance_report' => 'Stock Balance Report',
+    'stock_balance_report_desc' => 'View balance of each product in each store',
+    'stock_by_product_report' => 'Stock by Product Report',
+    'stock_by_product_report_desc' => 'Summary of product balances across all stores',
+    'stock_by_store_report' => 'Stock by Store Report',
+    'stock_by_store_report_desc' => 'Summary of balances for each store',
+    'stock_by_category_report' => 'Stock by Category Report',
+    'stock_by_category_report_desc' => 'Summary of balances for each product category',
+    'transaction_history_report' => 'Transaction History Report',
+    'transaction_history_report_desc' => 'View details of inventory movements (in and out)',
+    'low_stock_report' => 'Low Stock Report',
+    'low_stock_report_desc' => 'Alerts for products with low stock balance',
+
+    // Report Filters
+    'filters' => 'Filters',
+    'all_products' => 'All Products',
+    'all_stores' => 'All Stores',
+    'all_categories' => 'All Categories',
+    'all_movements' => 'All Movements',
+    'date_from' => 'Date From',
+    'date_to' => 'Date To',
+    'apply_filters' => 'Apply Filters',
+    'reset_filters' => 'Reset',
+
+    // Report Stats
+    'quantity_in' => 'Quantity In',
+    'quantity_out' => 'Quantity Out',
+    'total_quantity_in' => 'Total In',
+    'total_quantity_out' => 'Total Out',
+    'total_balance' => 'Total Balance',
+    'stores_count' => 'Stores Count',
+    'categories_count' => 'Categories Count',
+    'transactions_count' => 'Transactions Count',
+
+    // Low Stock
+    'stock_threshold' => 'Stock Threshold',
+    'stock_threshold_help' => 'Products with balance below this threshold will appear in the report',
+    'out_of_stock' => 'Out of Stock',
+    'low_stock' => 'Low Stock',
+    'total_items_below' => 'Total Items Below',
+    'attention_required' => 'Attention Required!',
+    'out_of_stock_warning' => 'There are :count products out of stock that need replenishment',
+
 ];

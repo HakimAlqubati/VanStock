@@ -266,4 +266,49 @@ return [
     'sales_dept' => 'قسم المبيعات',
     'accounting_dept' => 'قسم المحاسبة',
 
+    // Inventory Reports - تقارير المخزون
+    'inventory_reports' => 'تقارير المخزون',
+    'stock_balance_report' => 'تقرير أرصدة المخزون',
+    'stock_balance_report_desc' => 'عرض رصيد كل منتج في كل مخزن',
+    'stock_by_product_report' => 'تقرير المخزون حسب المنتج',
+    'stock_by_product_report_desc' => 'ملخص أرصدة المنتجات عبر جميع المخازن',
+    'stock_by_store_report' => 'تقرير المخزون حسب المخزن',
+    'stock_by_store_report_desc' => 'ملخص أرصدة كل مخزن',
+    'stock_by_category_report' => 'تقرير المخزون حسب الفئة',
+    'stock_by_category_report_desc' => 'ملخص أرصدة كل فئة من المنتجات',
+    'transaction_history_report' => 'تقرير سجل الحركات',
+    'transaction_history_report_desc' => 'عرض تفاصيل حركات المخزون (الوارد والصادر)',
+    'low_stock_report' => 'تقرير المخزون المنخفض',
+    'low_stock_report_desc' => 'تنبيهات المنتجات ذات الرصيد المنخفض',
+
+    // Report Filters
+    'filters' => 'الفلاتر',
+    'all_products' => 'جميع المنتجات',
+    'all_stores' => 'جميع المخازن',
+    'all_categories' => 'جميع الفئات',
+    'all_movements' => 'جميع الحركات',
+    'date_from' => 'من تاريخ',
+    'date_to' => 'إلى تاريخ',
+    'apply_filters' => 'تطبيق الفلاتر',
+    'reset_filters' => 'إعادة تعيين',
+
+    // Report Stats
+    'quantity_in' => 'الكمية الواردة',
+    'quantity_out' => 'الكمية الصادرة',
+    'total_quantity_in' => 'إجمالي الوارد',
+    'total_quantity_out' => 'إجمالي الصادر',
+    'total_balance' => 'الرصيد الإجمالي',
+    'stores_count' => 'عدد المخازن',
+    'categories_count' => 'عدد الفئات',
+    'transactions_count' => 'عدد الحركات',
+
+    // Low Stock
+    'stock_threshold' => 'حد المخزون',
+    'stock_threshold_help' => 'المنتجات التي رصيدها أقل من هذا الحد ستظهر في التقرير',
+    'out_of_stock' => 'نفذ من المخزون',
+    'low_stock' => 'مخزون منخفض',
+    'total_items_below' => 'إجمالي المنتجات أقل من',
+    'attention_required' => 'يحتاج انتباه!',
+    'out_of_stock_warning' => 'يوجد :count منتج نفذ من المخزون ويحتاج إعادة توريد',
+
 ];
