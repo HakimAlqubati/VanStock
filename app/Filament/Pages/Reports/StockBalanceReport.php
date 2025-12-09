@@ -7,13 +7,11 @@ use App\Services\Inventory\InventoryReportService;
 use App\Models\Product;
 use App\Models\Store;
 use App\Models\Category;
-use BackedEnum;
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Form;
 use Filament\Pages\Page;
-use Filament\Support\Icons\Heroicon;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
@@ -55,10 +53,10 @@ class StockBalanceReport extends Page implements HasTable
         return __('lang.stock_balance_report_desc');
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Section::make(__('lang.filters'))
                     ->schema([
                         Select::make('filters.product_id')
@@ -92,8 +90,7 @@ class StockBalanceReport extends Page implements HasTable
                     ])
                     ->columns(5)
                     ->collapsible(),
-            ])
-            ->statePath('filters');
+            ]);
     }
 
     public function table(Table $table): Table

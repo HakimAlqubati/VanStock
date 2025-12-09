@@ -4,15 +4,14 @@ namespace App\Filament\Pages\Reports;
 
 use App\DTOs\Inventory\InventoryFilterDTO;
 use App\Services\Inventory\InventoryReportService;
-use App\Models\Product;
 use App\Models\Store;
 use App\Models\Category;
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
 use Filament\Pages\Page;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
@@ -54,10 +53,10 @@ class LowStockReport extends Page implements HasTable
         return __('lang.low_stock_report_desc');
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Section::make(__('lang.filters'))
                     ->schema([
                         TextInput::make('threshold')
@@ -92,8 +91,7 @@ class LowStockReport extends Page implements HasTable
                     ])
                     ->columns(5)
                     ->collapsible(),
-            ])
-            ->statePath('filters');
+            ]);
     }
 
     public function table(Table $table): Table

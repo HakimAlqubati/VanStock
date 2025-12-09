@@ -8,10 +8,10 @@ use App\Models\Product;
 use App\Models\Store;
 use App\Models\Category;
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Form;
 use Filament\Pages\Page;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
@@ -52,10 +52,10 @@ class TransactionHistoryReport extends Page implements HasTable
         return __('lang.transaction_history_report_desc');
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Section::make(__('lang.filters'))
                     ->schema([
                         Select::make('filters.product_id')
@@ -97,8 +97,7 @@ class TransactionHistoryReport extends Page implements HasTable
                     ])
                     ->columns(6)
                     ->collapsible(),
-            ])
-            ->statePath('filters');
+            ]);
     }
 
     public function table(Table $table): Table
