@@ -324,4 +324,17 @@ return [
     'end_odometer' => 'End Odometer',
     'not_returned_yet' => 'Not returned yet',
 
+    // Customer Aging
+    'customer_aging_analysis' => 'Customer Aging Analysis',
+    'customer_aging_report' => 'Aging Report',
+    'aging_0_30' => '0-30 Days (Current)',
+    'aging_31_60' => '31-60 Days',
+    'aging_61_90' => '61-90 Days',
+    'aging_90_plus' => '90+ Days',
+    'days_overdue' => 'Days Overdue',
+    'total_outstanding' => 'Total Outstanding',
+    'aging_summary' => 'Aging Summary',
+    'payment_terms' => 'Payment Terms',
+    'payment_terms_days' => 'Payment Terms (Days)',
+
 ];

@@ -324,4 +324,17 @@ return [
     'end_odometer' => 'عداد النهاية',
     'not_returned_yet' => 'لم يتم الإرجاع بعد',
 
+    // Customer Aging - أعمار ديون العملاء
+    'customer_aging_analysis' => 'تحليل أعمار ديون العملاء',
+    'customer_aging_report' => 'تقرير أعمار الديون',
+    'aging_0_30' => '0-30 يوم (حالية)',
+    'aging_31_60' => '31-60 يوم',
+    'aging_61_90' => '61-90 يوم',
+    'aging_90_plus' => 'أكثر من 90 يوم',
+    'days_overdue' => 'أيام التأخير',
+    'total_outstanding' => 'إجمالي المستحقات',
+    'aging_summary' => 'ملخص الأعمار',
+    'payment_terms' => 'شروط الدفع',
+    'payment_terms_days' => 'عدد أيام الدفع',
+
 ];

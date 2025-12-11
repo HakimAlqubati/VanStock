@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Filament\Widgets\CategoriesChart;
+use App\Filament\Widgets\CustomerAgingChart;
 use App\Filament\Widgets\OrdersChart;
 use App\Filament\Widgets\ProductsChart;
 use App\Filament\Widgets\SalesMonthChart;
@@ -26,6 +27,7 @@ class Dashboard extends \Filament\Pages\Dashboard
         return [
             SalesMonthChart::class,
             SalesRepresentativesChart::class,
+            CustomerAgingChart::class,
             CategoriesChart::class,
             Top5ProductsSalesChart::class,
             OrdersChart::class,
