@@ -1581,7 +1581,7 @@
                 @else
                 <a href="/admin/login" class="btn btn-accent btn-large">{{ __('landing.cta_button') }}</a>
                 @endauth
-                <p class="cta-note">{{ __('landing.cta_note') }}</p>
+                <!-- <p class="cta-note">{{ __('landing.cta_note') }}</p> -->
             </div>
         </div>
     </section>
@@ -1599,13 +1599,13 @@
                 <div class="contact-card reveal">
                     <div class="contact-icon">📧</div>
                     <h3>{{ __('landing.contact_email') }}</h3>
-                    <p>info@vanstock.com</p>
+                    <p>hakimahmed123321@gmail.com</p>
                 </div>
 
                 <div class="contact-card reveal" style="transition-delay: 0.1s;">
                     <div class="contact-icon">📞</div>
                     <h3>{{ __('landing.contact_phone') }}</h3>
-                    <p dir="ltr">+967 123 456 789</p>
+                    <p dir="ltr">+967 773030069</p>
                 </div>
 
                 <div class="contact-card reveal" style="transition-delay: 0.2s;">
