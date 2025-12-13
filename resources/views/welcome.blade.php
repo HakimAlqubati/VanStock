@@ -951,7 +951,7 @@
                 </div>
 
                 <div class="footer-text">
-                    {{ __('landing.footer_powered_by') }} VanStock Team
+                    {{ __('landing.footer_powered_by') }} 'Hakim'
                 </div>
             </div>
         </div>
