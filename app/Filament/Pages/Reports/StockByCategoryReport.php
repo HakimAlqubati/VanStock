@@ -144,4 +144,13 @@ class StockByCategoryReport extends Page implements HasTable
             'categories_count' => $report->count(),
         ];
     }
+
+    public function getReportData()
+    {
+        $service = app(InventoryReportService::class);
+        $filterDTO = InventoryFilterDTO::fromArray($this->filters['filters'] ?? []);
+        $report = $service->getStockByCategory($filterDTO);
+
+        return $report->items;
+    }
 }

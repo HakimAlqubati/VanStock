@@ -181,4 +181,14 @@ class LowStockReport extends Page implements HasTable
             'threshold' => $threshold,
         ];
     }
+
+    public function getReportData()
+    {
+        $service = app(InventoryReportService::class);
+        $filterDTO = InventoryFilterDTO::fromArray($this->filters['filters'] ?? []);
+        $threshold = (int) ($this->filters['threshold'] ?? $this->threshold);
+        $report = $service->getLowStockItems($threshold, $filterDTO);
+
+        return $report->items;
+    }
 }

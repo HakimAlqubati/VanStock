@@ -158,4 +158,13 @@ class StockByProductReport extends Page implements HasTable
             'items_count' => $report->count(),
         ];
     }
+
+    public function getReportData()
+    {
+        $service = app(InventoryReportService::class);
+        $filterDTO = InventoryFilterDTO::fromArray($this->filters['filters'] ?? []);
+        $report = $service->getStockByProduct($filterDTO);
+
+        return $report->items;
+    }
 }
