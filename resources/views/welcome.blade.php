@@ -1599,11 +1599,11 @@
             </div>
 
             <div class="contact-grid">
-                <div class="contact-card reveal">
+                <!-- <div class="contact-card reveal">
                     <div class="contact-icon">📧</div>
                     <h3>{{ __('landing.contact_email') }}</h3>
                     <p>hakimahmed123321@gmail.com</p>
-                </div>
+                </div> -->
 
                 <div class="contact-card reveal" style="transition-delay: 0.1s;">
                     <div class="contact-icon">📞</div>
@@ -1645,7 +1645,7 @@
 
                 <div class="footer-contact">
                     <h4>{{ __('landing.footer_contact_title') }}</h4>
-                    <p>📧 hakimahmed123321@gmail.com</p>
+                    <!-- <p>📧 hakimahmed123321@gmail.com</p> -->
                     <p dir="ltr">📞 +967 773030069</p>
                     <p>📍 {{ __('landing.contact_address_value') }}</p>
                 </div>
@@ -1653,7 +1653,7 @@
 
             <div class="footer-bottom">
                 <div>© {{ date('Y') }} VanStock. {{ __('landing.footer_rights') }}</div>
-                <div>{{ __('landing.footer_powered_by') }} Hakim</div>
+                <div>{{ __('landing.footer_powered_by') . ' VanStock Team' }} </div>
             </div>
         </div>
     </footer>
