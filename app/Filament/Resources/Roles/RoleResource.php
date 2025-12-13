@@ -22,7 +22,22 @@ class RoleResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = '\Spatie\Permission\Models\Role';
+    protected static ?string $recordTitleAttribute = 'name';
+
+    public static function getModelLabel(): string
+    {
+        return __('lang.role');
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return __('lang.roles');
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('lang.roles');
+    }
 
     public static function form(Schema $schema): Schema
     {
@@ -54,5 +69,10 @@ class RoleResource extends Resource
             'view' => ViewRole::route('/{record}'),
             'edit' => EditRole::route('/{record}/edit'),
         ];
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
     }
 }

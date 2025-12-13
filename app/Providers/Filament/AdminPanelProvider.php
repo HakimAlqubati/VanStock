@@ -20,6 +20,7 @@ use App\Filament\Resources\StockTransfers\StockTransferResource;
 use App\Filament\Resources\Stores\StoreResource;
 use App\Filament\Resources\Units\UnitResource;
 use App\Filament\Resources\Users\UserResource;
+use App\Filament\Resources\Roles\RoleResource;
 use App\Filament\Resources\Vehicles\VehicleResource;
 use App\Filament\Pages\Reports\StockBalanceReport;
 use App\Filament\Pages\Reports\StockByProductReport;
@@ -77,6 +78,7 @@ class AdminPanelProvider extends PanelProvider
                     NavigationGroup::make(__('menu.users_management'))
                         ->items([
                             ...UserResource::getNavigationItems(),
+                            ...RoleResource::getNavigationItems(),
                         ]),
                     NavigationGroup::make(__('menu.sales_and_vehicles'))
                         ->items([
