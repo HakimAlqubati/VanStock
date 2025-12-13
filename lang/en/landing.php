@@ -36,7 +36,7 @@ return [
     'feature_customers_desc' => 'Comprehensive customer database with credit limits, balances, and branch management',
 
     'feature_reports_title' => 'Reports & Statistics',
-    'feature_reports_desc' => '6 advanced inventory reports and detailed statistics for data-driven decision making',
+    'feature_reports_desc' => ' advanced inventory reports and detailed statistics for data-driven decision making',
 
     'feature_multi_store_title' => 'Multi-Store Support',
     'feature_multi_store_desc' => 'Manage multiple stores with inventory movement and transfer tracking between them',
@@ -93,7 +93,7 @@ return [
     'why_2_desc' => 'Simple and easy-to-learn interface that requires no intensive training',
 
     'why_3_title' => 'Advanced Reports',
-    'why_3_desc' => '6 integrated inventory reports with performance statistics',
+    'why_3_desc' => 'integrated inventory reports with performance statistics',
 
     'why_4_title' => 'Permission System',
     'why_4_desc' => 'Full control over user permissions and roles',
@@ -121,7 +121,7 @@ return [
     'faq_4_a' => 'Yes, the system provides complete management of sales representatives including vehicle assignments, performance tracking, and commission management.',
 
     'faq_5_q' => 'What reports are available?',
-    'faq_5_a' => 'The system provides 6 advanced inventory reports: Stock Balances, Stock by Product/Store/Category, Transaction History, and Low Stock.',
+    'faq_5_a' => 'The system provides  advanced inventory reports: Stock Balances, Stock by Product/Store/Category, Transaction History, and Low Stock.',
 
     // Screenshots Section
     'screenshots_title' => 'System Interfaces',
@@ -147,7 +147,7 @@ return [
     'about_description' => 'VanStock is an integrated system for van stock and mobile distribution management. Designed specifically for companies that rely on field sales teams and direct distribution to customers. The system provides comprehensive solutions for inventory, sales, and customer management.',
     'about_point_1' => 'Real-time inventory tracking across multiple stores',
     'about_point_2' => 'Comprehensive sales management from order to invoice',
-    'about_point_3' => '6 advanced inventory reports and detailed statistics',
+    'about_point_3' => ' advanced inventory reports and detailed statistics',
     'about_point_4' => 'Full support for Arabic and English languages',
     'about_point_5' => 'Advanced permission system for users and roles',
     'about_point_6' => 'Sales representative and vehicle management',

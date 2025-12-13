@@ -1209,36 +1209,11 @@
                 </div>
 
                 <div class="hero-visual floating reveal" style="transition-delay: 0.2s;">
-                    <div class="hero-mockup glass-panel">
-                        <div class="mockup-header" style="display:flex; gap:8px; margin-bottom:15px;">
-                            <div style="width:12px; height:12px; background:#ff5f57; border-radius:50%;"></div>
-                            <div style="width:12px; height:12px; background:#febc2e; border-radius:50%;"></div>
-                            <div style="width:12px; height:12px; background:#28c840; border-radius:50%;"></div>
-                        </div>
-                        <div class="mockup-content">
-                            <div class="mockup-nav">
-                                <div class="mockup-nav-item" style="width: 20%;"></div>
-                                <div class="mockup-nav-item" style="width: 30%;"></div>
-                                <div class="mockup-nav-item" style="width: 20%;"></div>
-                            </div>
-                            <div class="mockup-cards">
-                                <div class="mockup-card"></div>
-                                <div class="mockup-card"></div>
-                                <div class="mockup-card"></div>
-                            </div>
-                            <div class="mockup-table">
-                                @for($i = 0; $i < 5; $i++)
-                                    <div class="mockup-table-row">
-                                    <div class="mockup-table-cell"></div>
-                                    <div class="mockup-table-cell"></div>
-                                    <div class="mockup-table-cell"></div>
-                            </div>
-                            @endfor
-                        </div>
+                    <div class="hero-mockup glass-panel" style="padding: 0; overflow: hidden;">
+                        <img src="{{ asset('/imgs/dashboard-preview.png') }}" alt="VanStock Dashboard" style="width: 100%; height: auto; display: block; border-radius: 20px;">
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </section>
 
