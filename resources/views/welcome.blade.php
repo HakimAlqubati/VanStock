@@ -1583,7 +1583,7 @@
                 <div class="contact-card reveal" style="transition-delay: 0.1s;">
                     <div class="contact-icon">📞</div>
                     <h3>{{ __('landing.contact_phone') }}</h3>
-                    <p dir="ltr">+967 773030069</p>
+                    <p dir="ltr">+967 0000000</p>
                 </div>
 
                 <div class="contact-card reveal" style="transition-delay: 0.2s;">
@@ -1621,7 +1621,7 @@
                 <div class="footer-contact">
                     <h4>{{ __('landing.footer_contact_title') }}</h4>
                     <!-- <p>📧 hakimahmed123321@gmail.com</p> -->
-                    <p dir="ltr">📞 +967 773030069</p>
+                    <p dir="ltr">📞 +967 0000000</p>
                     <p>📍 {{ __('landing.contact_address_value') }}</p>
                 </div>
             </div>
