@@ -337,4 +337,51 @@ return [
     'payment_terms' => 'شروط الدفع',
     'payment_terms_days' => 'عدد أيام الدفع',
 
+    // Roles & Permissions - الأدوار والصلاحيات
+    'roles_permissions' => 'الأدوار والصلاحيات',
+    'roles' => 'الأدوار',
+    'role' => 'دور',
+    'permissions' => 'الصلاحيات',
+    'permission' => 'صلاحية',
+    'role_name' => 'اسم الدور',
+    'guard_name' => 'اسم الحارس',
+    'assign_permissions' => 'تعيين الصلاحيات',
+    'assigned_permissions' => 'الصلاحيات المعينة',
+    'permission_name' => 'اسم الصلاحية',
+
+    // Role Names
+    'super_admin' => 'مدير النظام',
+    'admin' => 'مدير',
+    'manager' => 'مدير قسم',
+    'employee' => 'موظف',
+    'sales_representative' => 'مندوب مبيعات',
+
+    // Permission Groups
+    'user_permissions' => 'صلاحيات المستخدمين',
+    'role_permissions' => 'صلاحيات الأدوار',
+    'permission_permissions' => 'صلاحيات الصلاحيات',
+    'product_permissions' => 'صلاحيات المنتجات',
+    'category_permissions' => 'صلاحيات الفئات',
+    'brand_permissions' => 'صلاحيات العلامات التجارية',
+    'customer_permissions' => 'صلاحيات العملاء',
+    'vendor_permissions' => 'صلاحيات الموردين',
+    'sales_invoice_permissions' => 'صلاحيات فواتير المبيعات',
+    'sales_return_permissions' => 'صلاحيات مرتجعات المبيعات',
+    'purchase_invoice_permissions' => 'صلاحيات فواتير المشتريات',
+    'inventory_permissions' => 'صلاحيات المخزون',
+    'store_permissions' => 'صلاحيات المخازن',
+    'branch_permissions' => 'صلاحيات الفروع',
+    'payment_permissions' => 'صلاحيات المدفوعات',
+    'report_permissions' => 'صلاحيات التقارير',
+    'settings_permissions' => 'صلاحيات الإعدادات',
+    'attendance_permissions' => 'صلاحيات الحضور',
+    'employee_permissions' => 'صلاحيات الموظفين',
+
+    // Permission Actions
+    'view' => 'عرض',
+    'create' => 'إنشاء',
+    'update' => 'تعديل',
+    'delete' => 'حذف',
+    'export' => 'تصدير',
+
 ];

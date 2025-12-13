@@ -337,4 +337,51 @@ return [
     'payment_terms' => 'Payment Terms',
     'payment_terms_days' => 'Payment Terms (Days)',
 
+    // Roles & Permissions
+    'roles_permissions' => 'Roles & Permissions',
+    'roles' => 'Roles',
+    'role' => 'Role',
+    'permissions' => 'Permissions',
+    'permission' => 'Permission',
+    'role_name' => 'Role Name',
+    'guard_name' => 'Guard Name',
+    'assign_permissions' => 'Assign Permissions',
+    'assigned_permissions' => 'Assigned Permissions',
+    'permission_name' => 'Permission Name',
+
+    // Role Names
+    'super_admin' => 'Super Admin',
+    'admin' => 'Admin',
+    'manager' => 'Manager',
+    'employee' => 'Employee',
+    'sales_representative' => 'Sales Representative',
+
+    // Permission Groups
+    'user_permissions' => 'User Permissions',
+    'role_permissions' => 'Role Permissions',
+    'permission_permissions' => 'Permission Permissions',
+    'product_permissions' => 'Product Permissions',
+    'category_permissions' => 'Category Permissions',
+    'brand_permissions' => 'Brand Permissions',
+    'customer_permissions' => 'Customer Permissions',
+    'vendor_permissions' => 'Vendor Permissions',
+    'sales_invoice_permissions' => 'Sales Invoice Permissions',
+    'sales_return_permissions' => 'Sales Return Permissions',
+    'purchase_invoice_permissions' => 'Purchase Invoice Permissions',
+    'inventory_permissions' => 'Inventory Permissions',
+    'store_permissions' => 'Store Permissions',
+    'branch_permissions' => 'Branch Permissions',
+    'payment_permissions' => 'Payment Permissions',
+    'report_permissions' => 'Report Permissions',
+    'settings_permissions' => 'Settings Permissions',
+    'attendance_permissions' => 'Attendance Permissions',
+    'employee_permissions' => 'Employee Permissions',
+
+    // Permission Actions
+    'view' => 'View',
+    'create' => 'Create',
+    'update' => 'Update',
+    'delete' => 'Delete',
+    'export' => 'Export',
+
 ];
