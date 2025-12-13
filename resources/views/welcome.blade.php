@@ -1642,8 +1642,8 @@
 
                 <div class="footer-contact">
                     <h4>{{ __('landing.footer_contact_title') }}</h4>
-                    <p>📧 info@vanstock.com</p>
-                    <p dir="ltr">📞 +967 123 456 789</p>
+                    <p>📧 hakimahmed123321@gmail.com</p>
+                    <p dir="ltr">📞 +967 773030069</p>
                     <p>📍 {{ __('landing.contact_address_value') }}</p>
                 </div>
             </div>
