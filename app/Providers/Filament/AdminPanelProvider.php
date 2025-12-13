@@ -75,11 +75,6 @@ class AdminPanelProvider extends PanelProvider
                     // ...Settings::getNavigationItems(),
                 ])->groups([
 
-                    NavigationGroup::make(__('menu.users_management'))
-                        ->items([
-                            ...UserResource::getNavigationItems(),
-                            ...RoleResource::getNavigationItems(),
-                        ]),
                     NavigationGroup::make(__('menu.sales_and_vehicles'))
                         ->items([
                             ...VehicleResource::getNavigationItems(),
@@ -135,6 +130,11 @@ class AdminPanelProvider extends PanelProvider
                             ...StockByCategoryReport::getNavigationItems(),
                             ...TransactionHistoryReport::getNavigationItems(),
                             ...LowStockReport::getNavigationItems(),
+                        ]),
+                    NavigationGroup::make(__('lang.system_administration'))
+                        ->items([
+                            ...UserResource::getNavigationItems(),
+                            ...RoleResource::getNavigationItems(),
                         ]),
 
                 ]);

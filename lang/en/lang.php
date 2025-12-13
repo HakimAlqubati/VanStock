@@ -384,4 +384,7 @@ return [
     'delete' => 'Delete',
     'export' => 'Export',
 
+    // System Administration
+    'system_administration' => 'System Administration',
+
 ];
