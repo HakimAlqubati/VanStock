@@ -8,7 +8,7 @@
     <meta name="keywords" content="VanStock, inventory, sales, distribution, مخزون, مبيعات, توزيع">
     <title>VanStock - {{ __('landing.hero_title') }}</title>
     <link rel="icon" href="{{ asset('/imgs/logo.png') }}" type="image/png">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Almarai:wght@300;400;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -25,7 +25,7 @@
             --glass-shine: rgba(255, 255, 255, 0.15);
             --text-main: #ffffff;
             --text-muted: #94a3b8;
-            --font-ar: 'Tajawal', sans-serif;
+            --font-ar: 'Cairo', 'Almarai', sans-serif;
             --font-en: 'Outfit', sans-serif;
         }
 
@@ -41,13 +41,14 @@
         }
 
         body {
-            font-family: {
+            /* font-family: {
                     {
                     app()->getLocale()=='ar' ? 'var(--font-ar)': 'var(--font-en)'
                 }
-            }
+            } */
 
-            ;
+            /* ; */
+            font-family: 'Cairo', 'Almarai', sans-serif;
             background-color: var(--bg-deep);
             color: var(--text-main);
             overflow-x: hidden;
@@ -1194,9 +1195,9 @@
             <div class="hero-content">
                 <div class="hero-text reveal">
                     <span class="hero-badge">✨ {{ __('landing.hero_subtitle') }}</span>
-                    <h1>{{ __('landing.hero_title') }}</h1>
-                    <h2>{{ __('landing.hero_subtitle') }}</h2>
-                    <p>{{ __('landing.hero_description') }}</p>
+                    <h1 style="font-family: 'Almarai', sans-serif">{{ __('landing.hero_title') }}</h1>
+                    <h2 style="font-family: 'Almarai', sans-serif">{{ __('landing.hero_subtitle') }}</h2>
+                    <p style="font-family: 'Almarai', sans-serif">{{ __('landing.hero_description') }}</p>
                     <div class="hero-buttons">
                         @auth
                         <a href="/admin" class="btn btn-accent btn-large">{{ __('landing.go_to_dashboard') }}</a>
@@ -1246,7 +1247,9 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-badge">{{ __('landing.nav_features') }}</span>
-                <h2>{{ __('landing.features_title') }}</h2>
+                <h2 style="font-family: Cairo', 'Almarai', sans-serif">
+                    {{ __('landing.features_title') }}
+                </h2>
                 <p>{{ __('landing.features_subtitle') }}</p>
             </div>
 
