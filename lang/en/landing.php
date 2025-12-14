@@ -54,17 +54,35 @@ return [
     'how_it_works_title' => 'How It Works',
     'how_it_works_subtitle' => 'Simple Steps for Effective Management',
 
-    'step_1_title' => 'Add Products & Customers',
-    'step_1_desc' => 'Add your products, categories, and customers with complete information',
+    'step_1_title' => 'Add Representatives',
+    'step_1_desc' => 'Register sales representatives, create their profiles, and define their permissions',
 
-    'step_2_title' => 'Create Sales Orders',
-    'step_2_desc' => 'Create sales orders for customers and issue invoices easily',
+    'step_2_title' => 'Trucks & Mobile Stores',
+    'step_2_desc' => 'Add trucks and assign them as mobile warehouses to enable inventory tracking within them',
 
-    'step_3_title' => 'Manage Inventory',
-    'step_3_desc' => 'Track inventory movements and perform transfers between stores',
+    'step_3_title' => 'Route Assignment',
+    'step_3_desc' => 'Plan and assign sales routes for each representative to ensure effective area coverage',
 
-    'step_4_title' => 'Review Reports',
-    'step_4_desc' => 'Get detailed reports on inventory, sales, and performance',
+    'step_4_title' => 'Supply & Procurement',
+    'step_4_desc' => 'Manage purchasing processes and regular supply of goods to the main warehouse',
+
+    'step_5_title' => 'Stock Transfer',
+    'step_5_desc' => 'Transfer goods from the main warehouse to representatives\' trucks (mobile stores)',
+
+    'step_6_title' => 'Stock Issue',
+    'step_6_desc' => 'Issue goods or samples for promotional purposes or internal usage',
+
+    'step_7_title' => 'Warehouse Supply',
+    'step_7_desc' => 'Receive returns or remaining goods from trucks back into the main warehouse',
+
+    'step_8_title' => 'Sales Orders',
+    'step_8_desc' => 'Create sales orders and reserve quantities for customers before final invoicing',
+
+    'step_9_title' => 'Complete Sales',
+    'step_9_desc' => 'Convert orders into final invoices, record payments, and update balances',
+
+    'step_10_title' => 'Reports & Analytics',
+    'step_10_desc' => 'Monitor performance through detailed reports on sales, inventory, and representative activity',
 
     // Modules Section
     'modules_title' => 'System Modules',
