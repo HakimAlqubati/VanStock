@@ -1581,8 +1581,8 @@ span {
     }
 }
 
-/* ===== Tablet Portrait (768px) ===== */
-@media (max-width: 768px) {
+/* ===== Tablet & Mobile (992px) ===== */
+@media (max-width: 992px) {
 
     /* Show Hamburger */
     .nav-toggle {
