@@ -10,7 +10,7 @@
     <link rel="icon" href="{{ asset('/imgs/logo.png') }}" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Almarai:wght@300;400;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="{{ asset('css/landing/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/landing/style.css') }}?v={{ time() }}">
 </head>
 
 <body>
@@ -55,7 +55,7 @@
     {{-- Floating Buttons --}}
     @include('landing.sections.floating-buttons')
 
-    <script src="{{ asset('js/landing/script.js') }}"></script>
+    <script src="{{ asset('js/landing/script.js') }}?v={{ time() }}"></script>
 </body>
 
 </html>
