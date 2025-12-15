@@ -123,22 +123,20 @@
 
 
 // FAQ Toggle
-document.querySelectorAll('.faq-question').forEach(function (question) {
-    question.addEventListener('click', function () {
-        const item = this.parentElement;
-        const isActive = item.classList.contains('active');
+function toggleFaq(question) {
+    const item = question.parentElement;
+    const isOpen = item.classList.contains('is-open');
 
-        // Close all
-        document.querySelectorAll('.faq-item').forEach(function (i) {
-            i.classList.remove('active');
-        });
-
-        // Toggle current
-        if (!isActive) {
-            item.classList.add('active');
-        }
+    // Close all
+    document.querySelectorAll('.faq-item').forEach(function (i) {
+        i.classList.remove('is-open');
     });
-});
+
+    // Toggle current
+    if (!isOpen) {
+        item.classList.add('is-open');
+    }
+}
 
 // Scroll Reveal Animation
 function reveal() {
