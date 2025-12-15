@@ -52,6 +52,9 @@
     {{-- Footer --}}
     @include('landing.sections.footer')
 
+    {{-- Floating Buttons --}}
+    @include('landing.sections.floating-buttons')
+
     <script src="{{ asset('js/landing/script.js') }}"></script>
 </body>
 

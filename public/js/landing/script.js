@@ -1,9 +1,11 @@
 // Navbar scroll effect - Hide on scroll down, show on scroll up
 (function () {
     const navbar = document.getElementById('navbar');
+    const scrollTopBtn = document.querySelector('.scroll-top-btn');
     let lastScrollY = window.scrollY;
     let ticking = false;
     const scrollThreshold = 100; // Start hiding after scrolling 100px
+    const scrollTopThreshold = 300; // Show scroll-to-top after 300px
 
     function updateNavbar() {
         const currentScrollY = window.scrollY;
@@ -35,6 +37,15 @@
             }
         }
 
+        // Show/hide scroll-to-top button
+        if (scrollTopBtn) {
+            if (currentScrollY > scrollTopThreshold) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        }
+
         lastScrollY = currentScrollY;
         ticking = false;
     }
@@ -48,6 +59,14 @@
         }
     });
 })();
+
+// Scroll to Top Function
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
 
 // Mobile Navigation Menu Toggle
 (function () {
