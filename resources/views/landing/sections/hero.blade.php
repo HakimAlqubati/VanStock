@@ -18,8 +18,8 @@
             </div>
 
             <div class="hero-visual floating reveal" style="transition-delay: 0.2s;">
-                <div class="hero-mockup glass-panel" style="padding: 0; overflow: hidden;">
-                    <img src="{{ asset('/imgs/dashboard-preview.png') }}" alt="VanStock Dashboard" style="width: 100%; height: auto; display: block; border-radius: 20px;">
+                <div class="hero-mockup glass-panel" style="padding: 0; overflow: hidden; min-width: 700px;">
+                    <img src="{{ asset('/imgs/dashboard-preview.png') }}" alt="VanStock Dashboard" style="width: 100%;   height: auto; display: block; border-radius: 20px; object-fit: cover;">
                 </div>
             </div>
         </div>

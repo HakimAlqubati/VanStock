@@ -1,12 +1,51 @@
-// Navbar scroll effect
-window.addEventListener('scroll', function () {
+// Navbar scroll effect - Hide on scroll down, show on scroll up
+(function () {
     const navbar = document.getElementById('navbar');
-    if (window.scrollY > 20) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+    const scrollThreshold = 100; // Start hiding after scrolling 100px
+
+    function updateNavbar() {
+        const currentScrollY = window.scrollY;
+
+        // Add scrolled class for background effect
+        if (currentScrollY > 20) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+
+        // Hide/show based on scroll direction
+        if (currentScrollY > scrollThreshold) {
+            if (currentScrollY > lastScrollY) {
+                // Scrolling down - hide navbar
+                navbar.classList.add('navbar-hidden');
+                navbar.classList.remove('navbar-visible');
+            } else {
+                // Scrolling up - show navbar
+                navbar.classList.remove('navbar-hidden');
+                navbar.classList.add('navbar-visible');
+            }
+        } else {
+            // Near top - always show
+            navbar.classList.remove('navbar-hidden');
+            navbar.classList.remove('navbar-visible');
+        }
+
+        lastScrollY = currentScrollY;
+        ticking = false;
     }
-});
+
+    window.addEventListener('scroll', function () {
+        if (!ticking) {
+            window.requestAnimationFrame(function () {
+                updateNavbar();
+            });
+            ticking = true;
+        }
+    });
+})();
+
 
 // FAQ Toggle
 document.querySelectorAll('.faq-question').forEach(function (question) {

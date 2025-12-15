@@ -73,13 +73,40 @@ span {
     position: fixed;
     top: 20px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(0);
     width: 90%;
     max-width: 1200px;
     z-index: 1000;
     border-radius: 20px;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.4s ease,
+        transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     padding: 0.8rem 1.5rem;
+    opacity: 1;
+}
+
+/* Hidden state - slide up with fade */
+.navbar.navbar-hidden {
+    transform: translateX(-50%) translateY(-120%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Visible state animation */
+.navbar.navbar-visible {
+    animation: navbarSlideIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes navbarSlideIn {
+    0% {
+        transform: translateX(-50%) translateY(-120%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
 }
 
 .navbar.scrolled {
