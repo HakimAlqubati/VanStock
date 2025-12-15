@@ -138,7 +138,10 @@ function scrollToTop() {
     });
 })();
 
-
+/**
+ * 
+ * @param {toggleFaq} question 
+ */
 
 
 // FAQ Toggle
