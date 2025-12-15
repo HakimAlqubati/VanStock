@@ -15,21 +15,24 @@
             navbar.classList.remove('scrolled');
         }
 
-        // Hide/show based on scroll direction
-        if (currentScrollY > scrollThreshold) {
-            if (currentScrollY > lastScrollY) {
-                // Scrolling down - hide navbar
-                navbar.classList.add('navbar-hidden');
-                navbar.classList.remove('navbar-visible');
+        // Hide/show based on scroll direction (only if mobile menu is closed)
+        const navMenu = document.getElementById('navMenu');
+        if (!navMenu || !navMenu.classList.contains('active')) {
+            if (currentScrollY > scrollThreshold) {
+                if (currentScrollY > lastScrollY) {
+                    // Scrolling down - hide navbar
+                    navbar.classList.add('navbar-hidden');
+                    navbar.classList.remove('navbar-visible');
+                } else {
+                    // Scrolling up - show navbar
+                    navbar.classList.remove('navbar-hidden');
+                    navbar.classList.add('navbar-visible');
+                }
             } else {
-                // Scrolling up - show navbar
+                // Near top - always show
                 navbar.classList.remove('navbar-hidden');
-                navbar.classList.add('navbar-visible');
+                navbar.classList.remove('navbar-visible');
             }
-        } else {
-            // Near top - always show
-            navbar.classList.remove('navbar-hidden');
-            navbar.classList.remove('navbar-visible');
         }
 
         lastScrollY = currentScrollY;
@@ -45,6 +48,78 @@
         }
     });
 })();
+
+// Mobile Navigation Menu Toggle
+(function () {
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+    const navOverlay = document.getElementById('navOverlay');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const body = document.body;
+
+    if (!navToggle || !navMenu) return;
+
+    // Toggle menu function
+    function toggleMenu() {
+        const isActive = navMenu.classList.contains('active');
+
+        navToggle.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        navOverlay?.classList.toggle('active');
+
+        // Update aria-expanded
+        navToggle.setAttribute('aria-expanded', !isActive);
+
+        // Prevent body scroll when menu is open
+        if (!isActive) {
+            body.style.overflow = 'hidden';
+        } else {
+            body.style.overflow = '';
+        }
+    }
+
+    // Close menu function
+    function closeMenu() {
+        navToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+        navOverlay?.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+        body.style.overflow = '';
+    }
+
+    // Toggle button click
+    navToggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        toggleMenu();
+    });
+
+    // Close on overlay click
+    navOverlay?.addEventListener('click', closeMenu);
+
+    // Close on nav link click
+    navLinks.forEach(function (link) {
+        link.addEventListener('click', function () {
+            // Small delay for smooth transition
+            setTimeout(closeMenu, 150);
+        });
+    });
+
+    // Close on ESC key
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+            closeMenu();
+        }
+    });
+
+    // Close menu on window resize (if switching to desktop)
+    window.addEventListener('resize', function () {
+        if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
+            closeMenu();
+        }
+    });
+})();
+
+
 
 
 // FAQ Toggle
