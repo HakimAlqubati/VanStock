@@ -3,7 +3,7 @@
     <div class="container">
         <div class="hero-content">
             <div class="hero-text reveal">
-                <span class="hero-badge">✨ {{ __('landing.hero_subtitle') }}</span>
+                <span class="hero-badge"><i class="fa-solid fa-sparkles"></i> {{ __('landing.hero_subtitle') }}</span>
                 <h1>{{ __('landing.hero_title') }}</h1>
                 <h2>{{ __('landing.hero_subtitle') }}</h2>
                 <p>{{ __('landing.hero_description') }}</p>

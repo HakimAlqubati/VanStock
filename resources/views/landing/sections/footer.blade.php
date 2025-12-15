@@ -23,9 +23,9 @@
 
             <div class="footer-contact">
                 <h4>{{ __('landing.footer_contact_title') }}</h4>
-                {{-- <p>📧 hakimahmed123321@gmail.com</p> --}}
-                <p dir="ltr">📞 +967 0000000</p>
-                <p>📍 {{ __('landing.contact_address_value') }}</p>
+                {{-- <p><i class="fa-solid fa-envelope"></i> hakimahmed123321@gmail.com</p> --}}
+                <p dir="ltr"><i class="fa-solid fa-phone"></i> +967 0000000</p>
+                <p><i class="fa-solid fa-location-dot"></i> {{ __('landing.contact_address_value') }}</p>
             </div>
         </div>
 
