@@ -337,6 +337,13 @@ return [
     'payment_terms' => 'Payment Terms',
     'payment_terms_days' => 'Payment Terms (Days)',
 
+    // User Form
+    'password' => 'Password',
+    'password_confirmation' => 'Password Confirmation',
+    'code' => 'Code',
+    'phone_code' => 'Phone Code',
+    'user_info' => 'User Information',
+
     // Roles & Permissions
     'roles_permissions' => 'Roles & Permissions',
     'roles' => 'Roles',

@@ -337,6 +337,13 @@ return [
     'payment_terms' => 'شروط الدفع',
     'payment_terms_days' => 'عدد أيام الدفع',
 
+    // User Form - نموذج المستخدم
+    'password' => 'كلمة المرور',
+    'password_confirmation' => 'تأكيد كلمة المرور',
+    'code' => 'الكود',
+    'phone_code' => 'كود الهاتف',
+    'user_info' => 'معلومات المستخدم',
+
     // Roles & Permissions - الأدوار والصلاحيات
     'roles_permissions' => 'الأدوار والصلاحيات',
     'roles' => 'الأدوار',

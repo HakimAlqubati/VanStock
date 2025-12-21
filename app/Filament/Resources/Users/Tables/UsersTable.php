@@ -13,11 +13,23 @@ class UsersTable
 {
     public static function configure(Table $table): Table
     {
-        return $table->defaultSort('id','desc')->striped()
+        return $table->defaultSort('id', 'desc')->striped()
             ->columns([
-                TextColumn::make('id')->alignCenter()->toggleable()->searchable(),
-                TextColumn::make('name')->alignCenter(false)->toggleable()->searchable(),
-                TextColumn::make('email')->alignCenter(false)->toggleable()->searchable(),
+                TextColumn::make('id')
+                    ->label(__('lang.id'))
+                    ->alignCenter()
+                    ->toggleable()
+                    ->searchable(),
+                TextColumn::make('name')
+                    ->label(__('lang.name'))
+                    ->alignCenter(false)
+                    ->toggleable()
+                    ->searchable(),
+                TextColumn::make('email')
+                    ->label(__('lang.email'))
+                    ->alignCenter(false)
+                    ->toggleable()
+                    ->searchable(),
             ])
             ->filters([
                 //
