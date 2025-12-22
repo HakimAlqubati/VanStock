@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:vanstock_mobile/core/constants/app_colors.dart';
 import 'package:vanstock_mobile/shared/widgets/widgets.dart';
 
@@ -180,7 +179,7 @@ class _LoginScreenState extends State<LoginScreen>
           ),
           child: Center(
             child: Icon(
-              Iconsax.truck_fast5,
+              Icons.local_shipping_rounded,
               size: 50,
               color: AppColors.primary,
             ),
@@ -255,7 +254,7 @@ class _LoginScreenState extends State<LoginScreen>
               controller: _emailController,
               hintText: 'أدخل البريد الإلكتروني',
               labelText: 'البريد الإلكتروني',
-              prefixIcon: Iconsax.sms,
+              prefixIcon: Icons.email_outlined,
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.next,
               focusNode: _emailFocusNode,
@@ -326,7 +325,7 @@ class _LoginScreenState extends State<LoginScreen>
               text: 'تسجيل الدخول',
               isLoading: _isLoading,
               onPressed: _handleLogin,
-              icon: Iconsax.login,
+              icon: Icons.login_rounded,
             ),
           ],
         ),
@@ -372,8 +371,8 @@ class _LoginScreenState extends State<LoginScreen>
             // TODO: Open support
           },
           icon: Icon(
-            Iconsax.headphone,
-            color: Colors.white.withOpacity(0.9),
+            Icons.headphones_outlined,
+            color: Colors.white.withValues(alpha: 0.9),
             size: 20,
           ),
           label: Text(

@@ -37,9 +37,6 @@ dependencies:
   
   # Loading & Animations
   shimmer: ^3.0.0
-  
-  # Icons
-  iconsax: ^0.0.8
 
 dev_dependencies:
   flutter_test:

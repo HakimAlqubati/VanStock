@@ -14,7 +14,7 @@ class AppTheme {
       brightness: Brightness.light,
       primaryColor: AppColors.primary,
       scaffoldBackgroundColor: AppColors.background,
-      
+
       // Color Scheme
       colorScheme: const ColorScheme.light(
         primary: AppColors.primary,
@@ -28,10 +28,10 @@ class AppTheme {
         onSurface: AppColors.textPrimary,
         onError: Colors.white,
       ),
-      
+
       // Text Theme
       textTheme: _getTextTheme(Brightness.light),
-      
+
       // AppBar Theme
       appBarTheme: AppBarTheme(
         elevation: 0,
@@ -45,7 +45,7 @@ class AppTheme {
         ),
         iconTheme: const IconThemeData(color: AppColors.textPrimary),
       ),
-      
+
       // Input Decoration Theme
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
@@ -82,7 +82,7 @@ class AppTheme {
         prefixIconColor: AppColors.textSecondary,
         suffixIconColor: AppColors.textSecondary,
       ),
-      
+
       // Elevated Button Theme
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -99,7 +99,7 @@ class AppTheme {
           ),
         ),
       ),
-      
+
       // Text Button Theme
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
@@ -110,7 +110,7 @@ class AppTheme {
           ),
         ),
       ),
-      
+
       // Outlined Button Theme
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
@@ -126,9 +126,9 @@ class AppTheme {
           ),
         ),
       ),
-      
+
       // Card Theme
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         elevation: 0,
         color: AppColors.surface,
         shape: RoundedRectangleBorder(
@@ -136,7 +136,7 @@ class AppTheme {
           side: const BorderSide(color: AppColors.border, width: 1),
         ),
       ),
-      
+
       // Checkbox Theme
       checkboxTheme: CheckboxThemeData(
         fillColor: WidgetStateProperty.resolveWith((states) {
@@ -149,13 +149,13 @@ class AppTheme {
           borderRadius: BorderRadius.circular(4),
         ),
       ),
-      
+
       // Divider Theme
       dividerTheme: const DividerThemeData(
         color: AppColors.divider,
         thickness: 1,
       ),
-      
+
       // Bottom Navigation Bar Theme
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: AppColors.surface,
@@ -166,7 +166,7 @@ class AppTheme {
         type: BottomNavigationBarType.fixed,
         elevation: 8,
       ),
-      
+
       // Floating Action Button Theme
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: AppColors.accent,
@@ -183,7 +183,7 @@ class AppTheme {
       brightness: Brightness.dark,
       primaryColor: AppColors.primary,
       scaffoldBackgroundColor: AppColors.backgroundDark,
-      
+
       // Color Scheme
       colorScheme: const ColorScheme.dark(
         primary: AppColors.secondary,
@@ -197,10 +197,10 @@ class AppTheme {
         onSurface: AppColors.textPrimaryDark,
         onError: Colors.white,
       ),
-      
+
       // Text Theme
       textTheme: _getTextTheme(Brightness.dark),
-      
+
       // AppBar Theme
       appBarTheme: AppBarTheme(
         elevation: 0,
@@ -214,7 +214,7 @@ class AppTheme {
         ),
         iconTheme: const IconThemeData(color: AppColors.textPrimaryDark),
       ),
-      
+
       // Input Decoration Theme
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
@@ -251,7 +251,7 @@ class AppTheme {
         prefixIconColor: AppColors.textSecondaryDark,
         suffixIconColor: AppColors.textSecondaryDark,
       ),
-      
+
       // Elevated Button Theme
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -268,9 +268,36 @@ class AppTheme {
           ),
         ),
       ),
-      
+
+      // Text Button Theme
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          foregroundColor: AppColors.secondary,
+          textStyle: GoogleFonts.cairo(
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ),
+
+      // Outlined Button Theme
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: AppColors.secondary,
+          side: const BorderSide(color: AppColors.secondary),
+          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          textStyle: GoogleFonts.cairo(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+
       // Card Theme
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         elevation: 0,
         color: AppColors.surfaceDark,
         shape: RoundedRectangleBorder(
@@ -278,7 +305,26 @@ class AppTheme {
           side: const BorderSide(color: AppColors.borderDark, width: 1),
         ),
       ),
-      
+
+      // Checkbox Theme
+      checkboxTheme: CheckboxThemeData(
+        fillColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return AppColors.secondary;
+          }
+          return Colors.transparent;
+        }),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(4),
+        ),
+      ),
+
+      // Divider Theme
+      dividerTheme: const DividerThemeData(
+        color: AppColors.borderDark,
+        thickness: 1,
+      ),
+
       // Bottom Navigation Bar Theme
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: AppColors.surfaceDark,
@@ -289,15 +335,22 @@ class AppTheme {
         type: BottomNavigationBarType.fixed,
         elevation: 8,
       ),
+
+      // Floating Action Button Theme
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        backgroundColor: AppColors.accent,
+        foregroundColor: Colors.white,
+        elevation: 4,
+      ),
     );
   }
 
   // ============ Text Theme ============
   static TextTheme _getTextTheme(Brightness brightness) {
-    final Color textColor = brightness == Brightness.light 
-        ? AppColors.textPrimary 
+    final Color textColor = brightness == Brightness.light
+        ? AppColors.textPrimary
         : AppColors.textPrimaryDark;
-    
+
     return TextTheme(
       // Display
       displayLarge: GoogleFonts.cairo(
@@ -315,7 +368,7 @@ class AppTheme {
         fontWeight: FontWeight.w400,
         color: textColor,
       ),
-      
+
       // Headline
       headlineLarge: GoogleFonts.cairo(
         fontSize: 32,
@@ -332,7 +385,7 @@ class AppTheme {
         fontWeight: FontWeight.w600,
         color: textColor,
       ),
-      
+
       // Title
       titleLarge: GoogleFonts.cairo(
         fontSize: 22,
@@ -349,7 +402,7 @@ class AppTheme {
         fontWeight: FontWeight.w600,
         color: textColor,
       ),
-      
+
       // Body
       bodyLarge: GoogleFonts.cairo(
         fontSize: 16,
@@ -366,7 +419,7 @@ class AppTheme {
         fontWeight: FontWeight.w400,
         color: textColor,
       ),
-      
+
       // Label
       labelLarge: GoogleFonts.cairo(
         fontSize: 14,
