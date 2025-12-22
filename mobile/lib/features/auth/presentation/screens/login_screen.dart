@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vanstock_mobile/core/constants/app_colors.dart';
+import 'package:vanstock_mobile/features/auth/data/repositories/auth_repository.dart';
 import 'package:vanstock_mobile/shared/widgets/widgets.dart';
 
 /// Login Screen
@@ -69,21 +70,42 @@ class _LoginScreenState extends State<LoginScreen>
 
     setState(() => _isLoading = true);
 
-    // Simulate API call
-    await Future.delayed(const Duration(seconds: 2));
+    try {
+      final response = await authRepository.login(
+        email: _emailController.text.trim(),
+        password: _passwordController.text,
+      );
 
-    setState(() => _isLoading = false);
+      if (!mounted) return;
 
-    // TODO: Implement actual login logic
-    if (mounted) {
+      // Show success message
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: const Text('تم تسجيل الدخول بنجاح'),
+          content: Text(response.message),
           backgroundColor: AppColors.success,
           behavior: SnackBarBehavior.floating,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),
       );
+
+      // TODO: Navigate to home screen
+      // Navigator.pushReplacementNamed(context, '/home');
+      
+    } catch (e) {
+      if (!mounted) return;
+      
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(e.toString()),
+          backgroundColor: AppColors.error,
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        ),
+      );
+    } finally {
+      if (mounted) {
+        setState(() => _isLoading = false);
+      }
     }
   }
 

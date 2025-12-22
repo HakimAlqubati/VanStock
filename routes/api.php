@@ -1,8 +1,28 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\Inventory\InventoryReportController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Authentication API Routes - مسارات المصادقة
+|--------------------------------------------------------------------------
+*/
+
+Route::prefix('auth')->group(function () {
+    // Public routes - المسارات العامة
+    Route::post('/login', [AuthController::class, 'login']);
+
+    // Protected routes - المسارات المحمية
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('/me', [AuthController::class, 'me']);
+        Route::post('/logout', [AuthController::class, 'logout']);
+        Route::post('/logout-all', [AuthController::class, 'logoutAll']);
+        Route::post('/update-location', [AuthController::class, 'updateLocation']);
+    });
+});
 
 Route::get('/user', function (Request $request) {
     return $request->user();
