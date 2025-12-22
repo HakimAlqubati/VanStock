@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:vanstock_mobile/core/theme/app_colors.dart';
+import 'package:vanstock_mobile/core/constants/app_colors.dart';
 import 'package:vanstock_mobile/shared/widgets/widgets.dart';
 
 /// Login Screen

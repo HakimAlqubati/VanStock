@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vanstock_mobile/core/theme/app_colors.dart';
+import 'package:vanstock_mobile/core/constants/app_colors.dart';
 
 /// Custom Button Widget
 /// زر مخصص قابل لإعادة الاستخدام
