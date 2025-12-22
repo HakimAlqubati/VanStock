@@ -3,6 +3,8 @@ import 'package:vanstock_mobile/core/constants/app_colors.dart';
 import 'package:vanstock_mobile/features/auth/data/models/auth_models.dart';
 import 'package:vanstock_mobile/features/auth/data/repositories/auth_repository.dart';
 import 'package:vanstock_mobile/features/auth/presentation/screens/login_screen.dart';
+import 'package:vanstock_mobile/features/orders/presentation/screens/orders_list_screen.dart';
+import 'package:vanstock_mobile/features/orders/presentation/screens/create_order_screen.dart';
 
 /// Home Screen - الشاشة الرئيسية
 class HomeScreen extends StatefulWidget {
@@ -33,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
       case 1:
         return _buildCustomersPlaceholder();
       case 2:
-        return _buildOrdersPlaceholder();
+        return const OrdersListScreen();
       case 3:
         return _buildProfilePage();
       default:
@@ -203,7 +205,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       icon: Icons.add_shopping_cart_rounded,
                       label: 'طلب جديد',
                       color: AppColors.primary,
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const CreateOrderScreen()),
+                        );
+                      },
                     ),
                     _buildQuickAction(
                       icon: Icons.receipt_rounded,
