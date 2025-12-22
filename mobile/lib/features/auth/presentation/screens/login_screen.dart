@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vanstock_mobile/core/constants/app_colors.dart';
 import 'package:vanstock_mobile/features/auth/data/repositories/auth_repository.dart';
+import 'package:vanstock_mobile/features/home/presentation/screens/home_screen.dart';
 import 'package:vanstock_mobile/shared/widgets/widgets.dart';
 
 /// Login Screen
@@ -88,8 +89,13 @@ class _LoginScreenState extends State<LoginScreen>
         ),
       );
 
-      // TODO: Navigate to home screen
-      // Navigator.pushReplacementNamed(context, '/home');
+      // Navigate to home screen
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomeScreen(loginData: response),
+        ),
+      );
       
     } catch (e) {
       if (!mounted) return;

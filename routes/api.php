@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\Inventory\InventoryReportController;
+use App\Http\Controllers\Api\SalesOrderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,19 @@ Route::prefix('auth')->group(function () {
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
+
+/*
+|--------------------------------------------------------------------------
+| Sales Orders API Routes - مسارات أوامر البيع
+|--------------------------------------------------------------------------
+*/
+Route::prefix('sales-orders')->middleware('auth:sanctum')->group(function () {
+    Route::get('/', [SalesOrderController::class, 'index']);
+    Route::post('/', [SalesOrderController::class, 'store']);
+    Route::get('/{id}', [SalesOrderController::class, 'show']);
+    Route::get('/data/customers', [SalesOrderController::class, 'getCustomers']);
+    Route::get('/data/products', [SalesOrderController::class, 'getProducts']);
+});
 
 /*
 |--------------------------------------------------------------------------
