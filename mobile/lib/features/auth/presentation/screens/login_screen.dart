@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../../../../shared/widgets/widgets.dart';
+import 'package:vanstock_mobile/core/theme/app_colors.dart';
+import 'package:vanstock_mobile/shared/widgets/widgets.dart';
 
 /// Login Screen
 /// شاشة تسجيل الدخول

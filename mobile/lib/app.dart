@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'core/theme/app_theme.dart';
-import 'features/auth/presentation/screens/login_screen.dart';
+import 'package:vanstock_mobile/core/theme/app_theme.dart';
+import 'package:vanstock_mobile/features/auth/presentation/screens/login_screen.dart';
 
 /// VanStock App
 /// التطبيق الرئيسي

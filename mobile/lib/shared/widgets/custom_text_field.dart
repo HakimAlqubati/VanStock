@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../core/theme/app_colors.dart';
+import 'package:vanstock_mobile/core/theme/app_colors.dart';
 
 /// Custom Text Field Widget
 /// حقل نص مخصص قابل لإعادة الاستخدام

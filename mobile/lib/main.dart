@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'app.dart';
+import 'package:vanstock_mobile/app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

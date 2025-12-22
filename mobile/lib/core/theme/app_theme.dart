@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'app_colors.dart';
+import 'package:vanstock_mobile/core/constants/app_colors.dart';
 
 /// VanStock App Theme
 /// ثيم تطبيق VanStock
