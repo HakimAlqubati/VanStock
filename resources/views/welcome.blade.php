@@ -26,7 +26,6 @@
 </head>
 
 <body>
-    <div class="universe-bg"></div>
 
     {{-- Navigation --}}
     @include('landing.sections.navigation')

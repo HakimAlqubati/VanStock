@@ -1,6 +1,6 @@
 {{-- Navigation Section --}}
-<nav class="navbar glass-panel" id="navbar">
-    <div class="nav-container">
+<nav class="navbar" id="navbar">
+    <div class="container nav-container">
         <a href="/" class="logo">
             <img src="{{ asset('/imgs/logo.png') }}" alt="VanStock">
             <span>VanStock</span>

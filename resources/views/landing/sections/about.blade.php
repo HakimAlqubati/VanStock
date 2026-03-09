@@ -1,5 +1,5 @@
 {{-- About Section --}}
-<section class="about" id="about">
+<section class="about section-padding" id="about">
     <div class="container">
         <div class="about-content">
             <div class="about-text reveal">
@@ -16,7 +16,7 @@
                 </ul>
             </div>
 
-            <div class="about-visual reveal" style="transition-delay: 0.2s;">
+            <div class="about-visual reveal">
                 <div class="about-stat">
                     <div class="about-stat-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
                     <div class="about-stat-text">

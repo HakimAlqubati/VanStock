@@ -23,15 +23,14 @@
 
             <div class="footer-contact">
                 <h4>{{ __('landing.footer_contact_title') }}</h4>
-                {{-- <p><i class="fa-solid fa-envelope"></i> hakimahmed123321@gmail.com</p> --}}
                 <p dir="ltr"><i class="fa-solid fa-phone"></i> +967 0000000</p>
                 <p><i class="fa-solid fa-location-dot"></i> {{ __('landing.contact_address_value') }}</p>
             </div>
         </div>
+    </div>
 
-        <div class="footer-bottom">
-            <div>© {{ date('Y') }} VanStock. {{ __('landing.footer_rights') }}</div>
-            <div>{{ __('landing.footer_powered_by') . ' VanStock Team' }} </div>
-        </div>
+    <div class="footer-bottom">
+        <div>© {{ date('Y') }} VanStock. {{ __('landing.footer_rights') }}</div>
+        <div>{{ __('landing.footer_powered_by') . ' VanStock Team' }} </div>
     </div>
 </footer>

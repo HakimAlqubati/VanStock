@@ -1,5 +1,5 @@
 {{-- FAQ Section --}}
-<section class="faq" id="faq">
+<section class="faq section-padding" id="faq">
     <div class="container">
         <div class="section-header reveal">
             <span class="section-badge"><i class="fas fa-question-circle"></i> FAQ</span>
@@ -22,8 +22,10 @@
                 @foreach($faqs as $index => $faq)
                 <div class="faq-item reveal" data-index="{{ $index }}">
                     <div class="faq-question" onclick="toggleFaq(this)">
-                        <span class="faq-number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
-                        <span class="faq-text">{{ $faq['q'] }}</span>
+                        <div style="display: flex; align-items: center; width: 100%;">
+                            <span class="faq-number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
+                            <span class="faq-text">{{ $faq['q'] }}</span>
+                        </div>
                         <span class="faq-icon">
                             <i class="fas fa-chevron-down"></i>
                         </span>
@@ -36,12 +38,6 @@
                     </div>
                 </div>
                 @endforeach
-            </div>
-
-            {{-- Decorative Elements --}}
-            <div class="faq-decoration">
-                <div class="faq-glow faq-glow-1"></div>
-                <div class="faq-glow faq-glow-2"></div>
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
 {{-- Modules Section --}}
-<section class="modules" id="modules">
+<section class="modules section-padding" id="modules">
     <div class="container">
         <div class="section-header reveal">
             <span class="section-badge">{{ __('landing.nav_modules') }}</span>
@@ -20,7 +20,7 @@
                 </div>
             </div>
 
-            <div class="module-card reveal" style="transition-delay: 0.1s;">
+            <div class="module-card reveal">
                 <div class="module-header">
                     <div class="module-icon"><i class="fa-solid fa-coins"></i></div>
                     <h3>{{ __('landing.module_sales_title') }}</h3>
@@ -32,7 +32,7 @@
                 </div>
             </div>
 
-            <div class="module-card reveal" style="transition-delay: 0.2s;">
+            <div class="module-card reveal">
                 <div class="module-header">
                     <div class="module-icon"><i class="fa-solid fa-users-gear"></i></div>
                     <h3>{{ __('landing.module_crm_title') }}</h3>
@@ -44,7 +44,7 @@
                 </div>
             </div>
 
-            <div class="module-card reveal" style="transition-delay: 0.3s;">
+            <div class="module-card reveal">
                 <div class="module-header">
                     <div class="module-icon"><i class="fa-solid fa-truck-fast"></i></div>
                     <h3>{{ __('landing.module_hr_title') }}</h3>

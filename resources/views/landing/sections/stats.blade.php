@@ -1,5 +1,5 @@
 {{-- Stats Section --}}
-<section class="stats reveal">
+<section class="stats reveal section-padding">
     <div class="container">
         <div class="stats-grid">
             <div class="stat-item">

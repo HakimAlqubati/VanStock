@@ -9,7 +9,6 @@
             @else
             <a href="/admin/login" class="btn btn-accent btn-large">{{ __('landing.cta_button') }}</a>
             @endauth
-            {{-- <p class="cta-note">{{ __('landing.cta_note') }}</p> --}}
         </div>
     </div>
 </section>
