@@ -16,6 +16,7 @@
                 ['q' => __('landing.faq_3_q'), 'a' => __('landing.faq_3_a')],
                 ['q' => __('landing.faq_4_q'), 'a' => __('landing.faq_4_a')],
                 ['q' => __('landing.faq_5_q'), 'a' => __('landing.faq_5_a')],
+                ['q' => __('landing.faq_6_q'), 'a' => __('landing.faq_6_a')],
                 ];
                 @endphp
 
@@ -33,7 +34,7 @@
                     <div class="faq-answer">
                         <div class="faq-answer-content">
                             <i class="fas fa-lightbulb faq-answer-icon"></i>
-                            <p>{{ $faq['a'] }}</p>
+                            <p>{!! $faq['a'] !!}</p>
                         </div>
                     </div>
                 </div>

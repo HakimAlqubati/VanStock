@@ -141,6 +141,9 @@ return [
     'faq_5_q' => 'What reports are available?',
     'faq_5_a' => 'The system provides  advanced inventory reports: Stock Balances, Stock by Product/Store/Category, Transaction History, and Low Stock.',
 
+    'faq_6_q' => 'What makes VanStock stand out from other systems?',
+    'faq_6_a' => 'At VanStock, we combine power and simplicity to deliver an exceptional experience:<br><ul style="list-style-type: disc; margin-left: 20px; margin-top: 10px; display: flex; flex-direction: column; gap: 8px; color: var(--text-main);"><li><strong>Precise Fulfillment:</strong> High flexibility to adapt to your specific business needs.</li><li><strong>Ease of Use:</strong> Intuitive and lightweight interfaces that require no complex training.</li><li><strong>Unlimited Integration:</strong> Superior capability to connect seamlessly with any other system you use.</li><li><strong>Competitive Cost:</strong> Available as a cloud service (SaaS) at a highly affordable price compared to expensive traditional systems.</li><li><strong>Continuous Development:</strong> Regular, free updates ensure you always have access to the latest features and capabilities.</li><li><strong>Exceptional Tech Support:</strong> A dedicated support team available around the clock to assist you and ensure business continuity.</li></ul>',
+
     // Screenshots Section
     'screenshots_title' => 'System Interfaces',
     'screenshots_subtitle' => 'Modern and user-friendly design built on the latest Filament',
